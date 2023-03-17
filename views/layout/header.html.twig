@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="h-full bg-indigo-50">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<body class="h-full">
+<div class="min-h-full">
+
+    {{ include('layout/navigation.html.twig') }}
+
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-blue-900">{{ page }}</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
