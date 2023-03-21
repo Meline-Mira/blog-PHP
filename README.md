@@ -1,5 +1,12 @@
 # Blog Emeline Numérique
 
+## Préparer le projet à son premier lancement
+
+```
+composer install
+npm install
+```
+
 ## Lancer le projet en local
 
 ```
