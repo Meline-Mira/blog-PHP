@@ -1,21 +1,26 @@
-# Blog Emeline Numérique
+# Emeline Numérique Blog
 
-## Préparer le projet à son premier lancement
+## Preparing the project for its first launch
 
 ```
 composer install
 npm install
 ```
 
-## Lancer le projet en local
+## Launch the project locally
 
 ```
 php -S localhost:8000 -t public
 tailwind -i ./assets/css/main.css -o public/css/main.css --watch
 ```
 
-## Compiler le CSS pour la production
+## Compile CSS for production
 
 ```
 tailwind -i ./assets/css/main.css -o public/css/main.css --minify
 ```
+
+## Configure the mailer
+
+Copy the `.env.example.php` file to `.env.local.php` then fill the MAILER_DSN variable with a compatible DSN with
+Symfony Mailer.

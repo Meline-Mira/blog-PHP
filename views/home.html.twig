@@ -1,4 +1,9 @@
 {{ include('layout/header.html.twig') }}
+<div>
+    {% if contact_form_success %}
+        <p class="text-gray-900 bg-green-100 p-6 border border-green-200 rounded-xl">Votre formulaire de contact a été envoyé avec succès</p>
+    {% endif %}
+</div>
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl py-8 sm:py-24 lg:max-w-none lg:py-10">
@@ -27,9 +32,16 @@
 <div class="isolate bg-blue-100 border border-blue-200 rounded-xl max-w-2xl py-8 lg:py-16 px-6 lg:px-8 mx-4 lg:w-3/5 md:mx-auto">
     <div class="mx-auto max-w-2xl text-center">
         <h2 class="text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl">Formulaire de contact</h2>
+        {% if errors %}
+            <ul class="text-sm text-red-500 mt-3">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <p class="mt-2 text-lg leading-8 text-gray-700">En cas de question ou si vous voulez devenir administrateur de ce blog, merci de remplir ce formulaire.</p>
     </div>
-    <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <form action="/" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
         <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
             <div>
                 <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">Prénom</label>
@@ -57,17 +69,15 @@
             </div>
             <div class="flex gap-x-4 sm:col-span-2">
                 <div class="flex h-6 items-center">
-                    <!-- Enabled: "bg-blue-600", Not Enabled: "bg-gray-200" -->
-                    <button id="confidentiality" type="button" class="bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" role="switch" aria-checked="false" aria-labelledby="switch-1-label">
-                        <span class="sr-only">Accepter la politique de confidentialité</span>
-                        <!-- Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" -->
-                        <span id="confidentiality-button" aria-hidden="true" class="translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"></span>
-                    </button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
-                <label class="text-sm leading-6 text-gray-600" id="switch-1-label">
+                <div class="text-sm leading-6 text-gray-600">
                     En sélectionnant ceci, vous acceptez notre
                     <a href="#" class="font-semibold text-blue-600">politique&nbsp;de&nbsp;confidentialité</a>.
-                </label>
+                </div>
             </div>
         </div>
         <div class="mt-10">
@@ -76,15 +86,5 @@
     </form>
 </div>
 
-<script>
-    document.getElementById('confidentiality').addEventListener('click', function () {
-        this.classList.toggle('bg-blue-600');
-        this.classList.toggle('bg-gray-200');
-
-        let confidentialityButton = document.getElementById('confidentiality-button');
-        confidentialityButton.classList.toggle('translate-x-3.5');
-        confidentialityButton.classList.toggle('translate-x-0');
-    })
-</script>
 
 {{ include('layout/footer.html.twig') }}

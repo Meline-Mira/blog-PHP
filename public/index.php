@@ -7,11 +7,12 @@ function urlIs($value)
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../views');
-$twig = new \Twig\Environment($loader, [
-    'cache' => __DIR__.'/../var/cache',
-    'debug' => true,
-]);
-$function = new \Twig\TwigFunction('urlIs', 'urlIs');
-$twig->addFunction($function);
-echo $twig->render('home.html.twig', ['page' => 'Accueil']);
+require_once __DIR__.'/../.env.example.php';
+if (file_exists(__DIR__.'/../.env.local.php')) {
+    require_once __DIR__.'/../.env.local.php';
+}
+
+require_once __DIR__.'/../services/symfony-mailer.php';
+require_once __DIR__.'/../services/twig.php';
+
+require_once __DIR__.'/../controllers/home.php';
