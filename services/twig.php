@@ -13,6 +13,7 @@ function create_twig(): Environment
     ]);
     $function = new TwigFunction('urlIs', 'urlIs');
     $twig->addFunction($function);
+    $twig->addGlobal('post', $_POST);
 
     return $twig;
 }
