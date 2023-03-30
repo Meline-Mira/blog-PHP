@@ -7,29 +7,35 @@ $success = false;
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (empty($_POST['email'])) {
+    $email_input = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $first_name_input = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_ADD_SLASHES);
+    $last_name_input = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_ADD_SLASHES);
+    $message_input = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_ADD_SLASHES);
+    $confidentiality_input = filter_input(INPUT_POST, 'confidentiality', FILTER_SANITIZE_ADD_SLASHES);
+
+    if ($email_input === null || $email_input === false) {
         $errors[] = 'Une adresse email est demandée.';
     }
-    if (empty($_POST['first_name'])) {
+    if ($first_name_input === '' || $first_name_input === false) {
         $errors[] = 'Un prénom est demandé.';
     }
-    if (empty($_POST['last_name'])) {
+    if ($last_name_input === '' || $last_name_input === false) {
         $errors[] = 'Un nom est demandé.';
     }
-    if (empty($_POST['message'])) {
+    if ($message_input === '' || $message_input === false) {
         $errors[] = 'Un message est demandé.';
     }
-    if (!isset($_POST['confidentiality'])) {
+    if ($confidentiality_input !== 'on') {
         $errors[] = 'Vous devez accepter la politique de confidentialité.';
     }
 
     if (empty($errors)) {
         $mailer = create_mailer();
         $email = (new Email())
-            ->from(new Address($_POST['email'], $_POST['first_name'] . ' ' . $_POST['last_name']))
+            ->from(new Address($email_input, $first_name_input . ' ' . $last_name_input))
             ->to('emeline.gineys@gmail.com')
             ->subject('Formulaire de contact')
-            ->text($_POST['message']);
+            ->text($message_input);
 
         $mailer->send($email);
 
