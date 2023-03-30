@@ -11,6 +11,7 @@ if (file_exists(__DIR__.'/../.env.local.php')) {
 
 require_once __DIR__.'/../services/symfony-mailer.php';
 require_once __DIR__.'/../services/twig.php';
+require_once __DIR__.'/../services/db.php';
 
 $router = new \App\Router();
 
