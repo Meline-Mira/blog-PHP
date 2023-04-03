@@ -2,16 +2,13 @@
 
 const BASE_PATH = __DIR__ . '/../';
 require_once BASE_PATH . 'vendor/autoload.php';
-require_once BASE_PATH . 'services/functions.php';
 
-require_once __DIR__.'/../.env.example.php';
-if (file_exists(__DIR__.'/../.env.local.php')) {
-    require_once __DIR__.'/../.env.local.php';
+require_once BASE_PATH . '.env.example.php';
+if (file_exists(BASE_PATH . '.env.local.php')) {
+    require_once BASE_PATH . '.env.local.php';
 }
 
-require_once __DIR__.'/../services/symfony-mailer.php';
-require_once __DIR__.'/../services/twig.php';
-require_once __DIR__.'/../services/db.php';
+require_once BASE_PATH . 'services/services.php';
 
 $router = new \App\Router();
 
