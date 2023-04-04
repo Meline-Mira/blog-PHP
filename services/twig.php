@@ -1,6 +1,7 @@
 <?php
 
 use Twig\Environment;
+use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
@@ -11,6 +12,7 @@ function create_twig(): Environment
         'cache' => false/*__DIR__ . '/../var/cache'*/,
         'debug' => true,
     ]);
+    $twig->addExtension(new IntlExtension());
     $function = new TwigFunction('urlIs', 'urlIs');
     $twig->addFunction($function);
     $twig->addGlobal('post', $_POST);
