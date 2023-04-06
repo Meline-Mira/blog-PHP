@@ -27,17 +27,22 @@ class BlogPostModel
         ['id' => $idPost, 'title' => $title, 'summary' => $summary, 'content' => $content, 'updated_at' => $updatedAt]);
     }
 
-    public function getPostsInPage(int $page, int $postsPerPage): array
+    public function getPostsInPage(int $current_page, int $postsPerPage): array
     {
-        $offset = ($page - 1) * $postsPerPage;
+        $offset = ($current_page - 1) * $postsPerPage;
 
         return $this->database->fetchAll('
         SELECT p.*, u.first_name, u.last_name FROM posts p
         LEFT JOIN users u ON p.id_user = u.id
         ORDER BY p.updated_at DESC
-        LIMIT :postsPerPage
-        OFFSET :offset',
-        ['postsPerPage' => $postsPerPage, 'offset' => $offset]);
+        LIMIT '. ((int) $postsPerPage).
+        ' OFFSET '. ((int) $offset));
+    }
+
+    public function numberOfPosts(): int
+    {
+        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM posts');
+        return $result['count'];
     }
 
     public function getPostFromId(int $idPost): array

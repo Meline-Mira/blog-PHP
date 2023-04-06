@@ -1,6 +1,6 @@
 <?php
 
-$model = blogPostManagement();
+$model = createBlogPostModel();
 $post = $model->getPostFromId($_GET['id']);
 
 $twig = create_twig();

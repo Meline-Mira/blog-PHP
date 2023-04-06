@@ -1,0 +1,77 @@
+{{ include('layout/header.html.twig') }}
+
+
+<div class="mx-auto max-w-2xl py-4 lg:max-w-none">
+    <div class="space-y-6 lg:grid lg:grid-cols-3 lg:gap-x-6">
+        {% for post in posts %}
+            <div class="group relative bg-blue-100 rounded-lg mt-6">
+                <div class="relative h-80 w-full overflow-hidden rounded-t-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 sm:h-64">
+                    <img src="{{ post.image_url }}" alt="{{ post.image_description }}" class="h-full w-full object-cover object-center">
+                </div>
+                <div class="px-5 py-4 text-gray-700">
+                    <h1 class="text-2xl">{{ post.title }}</h1>
+                    <p class="my-2 text-sm text-gray-500">Dernière modification le {{ post.updated_at|format_datetime('long', 'none', locale='fr') }}</p>
+                    <p class="mb-12">{{ post.summary }}</p>
+                </div>
+                <div class="mt-2 justify-end absolute right-2 bottom-5">
+                    <a href="/posts/read?id={{ post.id }}" class="rounded-md bg-blue-600 p-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Lire la suite</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="flex items-center justify-between px-4 py-6 sm:px-6">
+        <div class="flex flex-1 justify-between sm:hidden">
+            <a href="{{ pagination.previousPageLink }}" class="relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Précédent</a>
+            <a href="{{ pagination.nextPageLink }}" class="relative ml-3 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Suivant</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+                <p class="text-sm text-gray-700">
+                    Vue des posts
+                    <span class="font-medium">{{ pagination.firstElementOnPage }}</span>
+                    à
+                    <span class="font-medium">{{ pagination.lastElementOnPage }}</span>
+                    sur
+                    <span class="font-medium">{{ pagination.numberOfItems }}</span>
+                    résultats
+                </p>
+            </div>
+            <div>
+                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                    {% if not pagination.isFirstPage %}
+                        <a href="{{ pagination.previousPageLink }}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Précédent</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    {% endif %}
+                    {% for currentPage in range(1, pagination.numberOfPages) %}
+                        <a href="{{ pagination.pageLink(currentPage) }}"
+                        {% if pagination.currentPage == currentPage %}
+                            aria-current="page" class="relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        {% else %}
+                            class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0"
+                        {% endif %}
+                        >{{ currentPage }}</a>
+                    {% endfor %}
+                    {# Code HTML si on veut faire une ellipse #}
+                    {# <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>#}
+                    {% if not pagination.isLastPage %}
+                        <a href="{{ pagination.nextPageLink }}" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Suivant</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{{ include('layout/footer.html.twig') }}

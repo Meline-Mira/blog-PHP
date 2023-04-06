@@ -18,12 +18,12 @@ function createDatabase()
     return new Database(createPdo());
 }
 
-function blogPostManagement()
+function createBlogPostModel()
 {
     return new BlogPostModel(createDatabase());
 }
 
-function commentManagement()
+function createCommentModel()
 {
     return new CommentModel(createDatabase());
 }
