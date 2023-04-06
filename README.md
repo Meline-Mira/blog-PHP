@@ -24,3 +24,7 @@ tailwind -i ./assets/css/main.css -o public/css/main.css --minify
 
 Copy the `.env.example.php` file to `.env.local.php` then fill the MAILER_DSN variable with a compatible DSN with
 Symfony Mailer.
+
+## Configure the database connexion
+
+The chosen database engine is MySQL (MariaDB). In `.env.local.php` inform the variables values.

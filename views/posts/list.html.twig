@@ -22,8 +22,12 @@
 
     <div class="flex items-center justify-between px-4 py-6 sm:px-6">
         <div class="flex flex-1 justify-between sm:hidden">
-            <a href="{{ pagination.previousPageLink }}" class="relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Précédent</a>
-            <a href="{{ pagination.nextPageLink }}" class="relative ml-3 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Suivant</a>
+            {% if not pagination.isFirstPage %}
+                <a href="{{ pagination.previousPageLink }}" class="relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Précédent</a>
+            {% endif %}
+            {% if not pagination.isLastPage %}
+                <a href="{{ pagination.nextPageLink }}" class="relative ml-3 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Suivant</a>
+            {% endif %}
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
