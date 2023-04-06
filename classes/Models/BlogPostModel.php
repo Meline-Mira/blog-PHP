@@ -14,7 +14,7 @@ class BlogPostModel
     {
         return $this->database->execute('
         INSERT INTO posts(title, summary, content, id_user, updated_at) 
-        VALUES (:title, :summary, :content, id_user, :updated_at)',
+        VALUES (:title, :summary, :content, :id_user, :updated_at)',
         ['title' => $title, 'summary' => $summary, 'content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
     }
 
