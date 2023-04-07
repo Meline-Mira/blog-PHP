@@ -52,11 +52,19 @@
                         </a>
                     {% endif %}
                     {% for currentPage in range(1, pagination.numberOfPages) %}
+                        {% set additional_class = "" %}
+
+                        {% if pagination.isFirstPage and currentPage == 1 %}
+                            {% set additional_class = "rounded-l-md" %}
+                        {% elseif pagination.isLastPage and currentPage == pagination.numberOfPages %}
+                            {% set additional_class = "rounded-r-md" %}
+                        {% endif %}
+
                         <a href="{{ pagination.pageLink(currentPage) }}"
                         {% if pagination.currentPage == currentPage %}
-                            aria-current="page" class="relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                            aria-current="page" class="{{ additional_class }} relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         {% else %}
-                            class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0"
+                            class="{{ additional_class }} relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0"
                         {% endif %}
                         >{{ currentPage }}</a>
                     {% endfor %}
