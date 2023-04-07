@@ -30,7 +30,7 @@ class CommentModel
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id_post = :id_post
-        ORDER BY c.updated_at ASC',
+        ORDER BY c.updated_at DESC',
         ['id_post' => $idPost]);
     }
 
