@@ -24,14 +24,13 @@ class CommentModel
         return $result['count'];
     }
 
-    public function getMostRecentCommentsForAPost(int $idPost, int $commentsPerPost): array
+    public function getCommentsForAPost(int $idPost): array
     {
         return $this->database->fetchAll('
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id_post = :id_post
-        ORDER BY c.updated_at DESC 
-        LIMIT ' . $commentsPerPost,
+        ORDER BY c.updated_at ASC',
         ['id_post' => $idPost]);
     }
 

@@ -37,6 +37,16 @@
                 button.classList.toggle('block');
             }
         })
+
+        document.getElementById('comment-button').addEventListener('click', function () {
+            let commentButton = document.getElementById('comments-display');
+            commentButton.classList.toggle('hidden');
+
+            for (var button of document.getElementsByClassName('comment-button')) {
+                button.classList.toggle('hidden');
+                button.classList.toggle('block');
+            }
+        })
     </script>
 </body>
 </html>
