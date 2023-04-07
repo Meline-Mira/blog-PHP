@@ -8,10 +8,10 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_input = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $first_name_input = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_ADD_SLASHES);
-    $last_name_input = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_ADD_SLASHES);
-    $message_input = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_ADD_SLASHES);
-    $confidentiality_input = filter_input(INPUT_POST, 'confidentiality', FILTER_SANITIZE_ADD_SLASHES);
+    $first_name_input = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
+    $last_name_input = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
+    $message_input = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
+    $confidentiality_input = filter_input(INPUT_POST, 'confidentiality', FILTER_UNSAFE_RAW);
 
     if ($email_input === null || $email_input === false) {
         $errors[] = 'Une adresse email est demandée.';

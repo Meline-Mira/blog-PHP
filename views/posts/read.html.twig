@@ -25,8 +25,37 @@
 
     <h1 class="mb-6 text-xl font-bold tracking-tight text-blue-900 underline">Commentaires</h1>
 
-    <div class="space-y-6">
+    <div>
+        <div class="mx-auto max-w-2xl text-center">
+            {% if errors %}
+                <ul class="text-sm text-red-500 mt-3">
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <form action="/comments/add" method="POST" class="relative mb-6">
+            <div class="bg-white overflow-hidden rounded-lg border border-blue-200 shadow-sm focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                <label for="content" class="sr-only">Commentaire</label>
+                <textarea rows="4" name="content" id="content" class="pt-2.5 block h-full w-full resize-none border-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Tapez votre commentaire..."></textarea>
+                <input id="id_post" name="id_post" type="hidden" value="{{ post.id }}">
+                <input id="current_page" name="current_page" type="hidden" value="{{ current_page }}">
 
+                <div aria-hidden="true" class="h-14"></div>
+            </div>
+
+            <div class="absolute inset-x-px bottom-0">
+                <div class="flex items-center justify-end space-x-3 border-t border-blue-100 px-2 py-2 sm:px-3">
+                    <div class="flex-shrink-0">
+                        <button type="submit" class="inline-flex items-center rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Publier</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="space-y-6" id="comments">
         {% for comment in comments %}
             {% if loop.index <= 5 %}
                 {{ include('partials/comments/comments-layout.html.twig') }}
@@ -51,7 +80,6 @@
             {% endfor %}
         </div>
         {% endif %}
-
 
     </div>
 

@@ -10,11 +10,11 @@ class CommentModel
     {
     }
 
-    public function addComment(string $content, int $idUser, int $updatedAt, int $idPost): array
+    public function addComment(string $content, int $idUser, string $updatedAt, int $idPost)
     {
-        return $this->database->execute('
-        INSERT INTO posts(content, id_user, updated_at, id_post) 
-        VALUES (:content, :id_user, :updated_at, :id_post)',
+        $this->database->execute('
+        INSERT INTO comments(content, id_user, updated_at, id_post, validated) 
+        VALUES (:content, :id_user, :updated_at, :id_post, 0)',
         ['content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt, 'id_post' => $idPost]);
     }
 
