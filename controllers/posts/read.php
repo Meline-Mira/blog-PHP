@@ -9,6 +9,12 @@ $currentPage = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_IN
 $comments = $comment_model->getCommentsForAPost($idPost);
 $comments_number = $comment_model->numberOfComments($idPost);
 
+$error = $_SESSION['add_comment_form_error'] ?? null;
+
+if ($error) {
+    unset($_SESSION['add_comment_form_error']);
+}
+
 $twig = create_twig();
 
 echo $twig->render('/posts/read.html.twig', [
@@ -16,4 +22,6 @@ echo $twig->render('/posts/read.html.twig', [
     'post' => $post,
     'comments' => $comments,
     'comments_number' => $comments_number,
-    'current_page' =>$currentPage]);
+    'current_page' =>$currentPage,
+    'error' => $error
+]);
