@@ -14,7 +14,7 @@ require_once BASE_PATH . 'services/services.php';
 
 $router = new \App\Router();
 
-$routes = require base_path('routes.php');
+$routes = require basePath('routes.php');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];

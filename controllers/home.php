@@ -7,35 +7,35 @@ $success = false;
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email_input = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $first_name_input = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
-    $last_name_input = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
-    $message_input = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
-    $confidentiality_input = filter_input(INPUT_POST, 'confidentiality', FILTER_UNSAFE_RAW);
+    $emailInput = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $firstNameInput = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
+    $lastNameInput = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
+    $messageInput = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
+    $confidentialityInput = filter_input(INPUT_POST, 'confidentiality', FILTER_UNSAFE_RAW);
 
-    if ($email_input === null || $email_input === false) {
+    if ($emailInput === null || $emailInput === false) {
         $errors[] = 'Une adresse email est demandée.';
     }
-    if ($first_name_input === '' || $first_name_input === false) {
+    if ($firstNameInput === '' || $firstNameInput === false) {
         $errors[] = 'Un prénom est demandé.';
     }
-    if ($last_name_input === '' || $last_name_input === false) {
+    if ($lastNameInput === '' || $lastNameInput === false) {
         $errors[] = 'Un nom est demandé.';
     }
-    if ($message_input === '' || $message_input === false) {
+    if ($messageInput === '' || $messageInput === false) {
         $errors[] = 'Un message est demandé.';
     }
-    if ($confidentiality_input !== 'on') {
+    if ($confidentialityInput !== 'on') {
         $errors[] = 'Vous devez accepter la politique de confidentialité.';
     }
 
     if (empty($errors)) {
         $mailer = create_mailer();
         $email = (new Email())
-            ->from(new Address($email_input, $first_name_input . ' ' . $last_name_input))
+            ->from(new Address($emailInput, $firstNameInput . ' ' . $lastNameInput))
             ->to('emeline.gineys@gmail.com')
             ->subject('Formulaire de contact')
-            ->text($message_input);
+            ->text($messageInput);
 
         $mailer->send($email);
 
