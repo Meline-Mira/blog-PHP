@@ -13,3 +13,6 @@ $router->post('/comments/add', 'controllers/comments/add.php');
 
 $router->get('/comments/edit', 'controllers/comments/edit.php');
 $router->patch('/comments/edit', 'controllers/comments/edit.php');
+
+$router->get('/comments/delete', 'controllers/comments/delete.php');
+$router->delete('/comments/delete', 'controllers/comments/delete.php');
