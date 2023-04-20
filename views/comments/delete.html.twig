@@ -8,6 +8,7 @@
 
         <form method="POST" class="relative mb-6">
             <input type="hidden" name="_method" value="DELETE" />
+            <input type="hidden" id="id_comment" name="id_comment" value="{{ comment.id }}">
             <div class="p-4 bg-white text-center overflow-hidden rounded-lg border border-red-600 shadow-sm focus-within:border-red-500 focus-within:ring-1 focus-within:ring-red-500">
                 Êtes-vous sûr de vouloir supprimer ce message ?
             </div>
