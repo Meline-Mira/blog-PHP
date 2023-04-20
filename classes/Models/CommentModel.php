@@ -34,6 +34,24 @@ class CommentModel
         ['id_post' => $idPost]);
     }
 
+    public function getOneComment(int $idComment): array
+    {
+        return $this->database->fetchOne('
+        SELECT c.*, u.first_name, u.last_name FROM comments c
+        LEFT JOIN users u ON c.id_user = u.id
+        WHERE c.id = :id',
+        ['id' => $idComment]);
+    }
+
+    public function editCommentByAdmin(string $content, int $idComment)
+    {
+        $this->database->execute('
+        UPDATE comments
+        SET content = :content, validated = 1
+        WHERE id = :id',
+        ['content' => $content, 'id' => $idComment]);
+    }
+
     public function deleteComment(int $idComment): void
     {
         $this->database->execute('DELETE FROM comments WHERE id = :id', ['id' => $idComment]);
