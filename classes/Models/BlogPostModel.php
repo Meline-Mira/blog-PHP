@@ -10,12 +10,12 @@ class BlogPostModel
     {
     }
 
-    public function addPost(string $title, string $summary, string $content, int $idUser, int $updatedAt): array
+    public function addPost(string $title, string $summary, string $content, string $imageUrl, string $imageDescription, int $idUser, int $updatedAt): array
     {
         return $this->database->execute('
-        INSERT INTO posts(title, summary, content, id_user, updated_at) 
+        INSERT INTO posts(title, summary, content, image_url, image_description, id_user, updated_at) 
         VALUES (:title, :summary, :content, :id_user, :updated_at)',
-        ['title' => $title, 'summary' => $summary, 'content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
+        ['title' => $title, 'summary' => $summary, 'content' => $content, 'image_url' => $imageUrl, 'image_description' => $imageDescription, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
     }
 
     public function updateBlogPosts(int $idPost, string $title, string $summary, string $content, int $updatedAt): void

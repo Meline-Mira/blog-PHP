@@ -1,0 +1,53 @@
+{{ include('layout/header.html.twig') }}
+
+<div class="bg-blue-100 border border-blue-200 rounded-xl max-w-4xl px-6 lg:px-8 lg:w-5/6 md:mx-auto">
+    <div class="mx-auto max-w-2xl text-center">
+        {% if errors %}
+            <ul class="text-sm text-red-500 mt-3">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <form action="/" method="POST" enctype="multipart/form-data" class="mx-auto mt-16 max-w-4xl">
+        <div class="grid grid-cols-1 gap-y-6">
+            <div>
+                <label for="title" class="block text-sm font-semibold leading-6 text-gray-900">Titre de 250 caractères maximum</label>
+                <div class="mt-2.5">
+                    <input type="text" name="title" id="title" value="{{ post.title }}" autocomplete="given-name" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">
+                </div>
+            </div>
+            <div>
+                <label for="summary" class="block text-sm font-semibold leading-6 text-gray-900">Chapô</label>
+                <div class="mt-2.5">
+                    <textarea name="summary" id="summary" rows="4" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">{{ post.summary }}</textarea>
+                </div>
+            </div>
+            <div>
+                <label for="content" class="block text-sm font-semibold leading-6 text-gray-900">Contenu</label>
+                <div class="mt-2.5">
+                    <textarea name="content" id="content" rows="15" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">{{ post.content }}</textarea>
+                </div>
+            </div>
+            <div>
+                <label for="image_url" class="block text-sm font-semibold leading-6 text-gray-900">Choisissez une photo en png ou jpeg de moins de 2Mo</label>
+                <div class="mt-2.5">
+                    <input type="file" id="image_url" name="image_url" accept="image/png, image/jpeg">
+                </div>
+            </div>
+            <div>
+                <label for="image_description" class="block text-sm font-semibold leading-6 text-gray-900">Décrivez la photo en 100 caractères maximum</label>
+                <div class="mt-2.5">
+                    <textarea name="image_description" id="image_description" rows="2" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">{{ post.image_description }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="my-10">
+            <button type="submit" class="block w-full rounded-md bg-blue-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Envoyer</button>
+        </div>
+    </form>
+</div>
+
+
+{{ include('layout/footer.html.twig') }}
