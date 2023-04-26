@@ -10,7 +10,7 @@
             </ul>
         {% endif %}
     </div>
-    <form action="/" method="POST" enctype="multipart/form-data" class="mx-auto mt-16 max-w-4xl">
+    <form method="POST" enctype="multipart/form-data" class="mx-auto mt-16 max-w-4xl">
         <div class="grid grid-cols-1 gap-y-6">
             <div>
                 <label for="title" class="block text-sm font-semibold leading-6 text-gray-900">Titre de 250 caractères maximum</label>
@@ -31,9 +31,9 @@
                 </div>
             </div>
             <div>
-                <label for="image_url" class="block text-sm font-semibold leading-6 text-gray-900">Choisissez une photo en png ou jpeg de moins de 2Mo</label>
+                <label for="image" class="block text-sm font-semibold leading-6 text-gray-900">Choisissez une photo en png, jpg ou jpeg de moins de 2Mo</label>
                 <div class="mt-2.5">
-                    <input type="file" id="image_url" name="image_url" accept="image/png, image/jpeg">
+                    <input type="file" id="image" name="image" accept="image/png,image/jpg,image/jpeg">
                 </div>
             </div>
             <div>

@@ -2,7 +2,7 @@
 
 $postModel = createBlogPostModel();
 
-$error = null;
+$errors = [];
 $idUser = 1; // TODO : $user_id = $_SESSION...
 $updatedAt = date("Y-m-d-H:i:s");
 
@@ -10,41 +10,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titleInput = filter_input(INPUT_POST, 'title', FILTER_UNSAFE_RAW);
     $summaryInput = filter_input(INPUT_POST, 'summary', FILTER_UNSAFE_RAW);
     $contentInput = filter_input(INPUT_POST, 'content', FILTER_UNSAFE_RAW);
-    $idUserInput = filter_input(INPUT_POST, 'id_user', FILTER_SANITIZE_NUMBER_INT);
-    $imageUrlInput = filter_input(INPUT_POST, 'image_url', FILTER_UNSAFE_RAW);
     $imageDescriptionInput = filter_input(INPUT_POST, 'image_description', FILTER_UNSAFE_RAW);
 
     if ($titleInput === '' || $titleInput === false) {
-        $error = 'Un titre est demandé.';
+        $errors[] = 'Un titre est demandé.';
     }
-    if ($titleInput >= 250) {
-        $error = 'Le titre doit faire moins de 250 caractères.';
+    if (strlen($titleInput) >= 250) {
+        $errors[] = 'Le titre doit faire moins de 250 caractères.';
     }
     if ($summaryInput === '' || $summaryInput === false) {
-        $error = 'Un chapô est demandé.';
+        $errors[] = 'Un chapô est demandé.';
     }
     if ($contentInput === '' || $contentInput === false) {
-        $error = 'Un contenu est demandé.';
+        $errors[] = 'Un contenu est demandé.';
     }
-    if ($imageUrlInput === '' || $imageUrlInput === false) {
-        $error = 'Une image est demandé.';
+    if ($_FILES['image']['error'] === UPLOAD_ERR_NO_FILE) {
+        $errors[] = 'Une image est demandée.';
     }
-    if (filesize($imageUrlInput) > 2e+6){
-        $error = 'L\image est trop lourde.';
+    if ($_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE) {
+        $errors[] = 'L\'image est trop lourde.';
+    }
+    if (!in_array(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg'])) {
+        $errors[] = 'Votre format d\'image n\'est pas accepté.';
     }
     if ($imageDescriptionInput === '' || $imageDescriptionInput === false) {
-        $error = 'Une description de l\'image est demandé.';
+        $errors[] = 'Une description de l\'image est demandé.';
     }
-    if ($imageDescriptionInput >= 100) {
-        $error = 'La description de l\'image doit faire moins de 100 caractères.';
+    if (strlen($imageDescriptionInput) >= 100) {
+        $errors[] = 'La description de l\'image doit faire moins de 100 caractères.';
     }
 
-    if ($error === null) {
-        $postModel->addPost($titleInput, $summaryInput, $contentInput, $imageUrlInput, $imageDescriptionInput, $idUser, $updatedAt);
+    if (!$errors) {
+        $imageUrl = '/uploads/' . md5(microtime(true)) . '-' . $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], BASE_PATH . 'public'. $imageUrl);
 
-        header("Location: /posts/read?id=" . $idPostInput);
-    } else {
-        header("Location: /posts/add");
+        $postModel->addPost($titleInput, $summaryInput, $contentInput, $imageUrl, $imageDescriptionInput, $idUser, $updatedAt);
+
+        header("Location: /posts/list");
+        die;
     }
 }
 
@@ -52,5 +55,5 @@ $twig = create_twig();
 
 echo $twig->render('/posts/add.html.twig', [
     'page' => "Ajout d'un blog post",
-    'error' => $error
+    'errors' => $errors
 ]);
