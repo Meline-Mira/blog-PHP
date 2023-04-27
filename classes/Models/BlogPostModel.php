@@ -18,13 +18,22 @@ class BlogPostModel
         ['title' => $title, 'summary' => $summary, 'content' => $content, 'image_url' => $imageUrl, 'image_description' => $imageDescription, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
     }
 
-    public function updateBlogPosts(int $idPost, string $title, string $summary, string $content, string $updatedAt): void
+    public function editBlogPosts(int $idPost, string $title, string $summary, string $content, string $imageDescription, string $updatedAt): void
     {
         $this->database->execute('
         UPDATE posts
-        SET title = :title, summary = :summary, content = :content, updated_at = :updated_at 
+        SET title = :title, summary = :summary, content = :content, image_description = :image_description, updated_at = :updated_at 
         WHERE id = :id',
-        ['id' => $idPost, 'title' => $title, 'summary' => $summary, 'content' => $content, 'updated_at' => $updatedAt]);
+        ['id' => $idPost, 'title' => $title, 'summary' => $summary, 'content' => $content, 'image_description' => $imageDescription, 'updated_at' => $updatedAt]);
+    }
+
+    public function changeBlogPostImage(int $idPost, string $imageUrl): void
+    {
+        $this->database->execute('
+        UPDATE posts
+        SET image_url = :image_url
+        WHERE id = :id',
+            ['id' => $idPost, 'image_url' => $imageUrl]);
     }
 
     public function getPostsInPage(int $current_page, int $postsPerPage): array
