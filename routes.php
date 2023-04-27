@@ -25,3 +25,8 @@ $router->patch('/comments/edit', 'controllers/comments/edit.php');
 
 $router->get('/comments/delete', 'controllers/comments/delete.php');
 $router->delete('/comments/delete', 'controllers/comments/delete.php');
+
+$router->get('/users/registration', 'controllers/users/registration.php');
+$router->post('/users/registration', 'controllers/users/registration.php');
+
+$router->get('/users/waiting-for-validation', 'controllers/users/waiting-for-validation.php');

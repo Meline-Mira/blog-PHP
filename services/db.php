@@ -3,6 +3,7 @@
 use App\Database;
 use App\Models\BlogPostModel;
 use App\Models\CommentModel;
+use App\Models\UserModel;
 
 function createPdo()
 {
@@ -26,4 +27,9 @@ function createBlogPostModel()
 function createCommentModel()
 {
     return new CommentModel(createDatabase());
+}
+
+function createUserModel()
+{
+    return new UserModel((createDatabase()));
 }
