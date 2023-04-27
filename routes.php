@@ -15,6 +15,9 @@ $router->get('/posts/read', 'controllers/posts/read.php');
 $router->get('/posts/edit', 'controllers/posts/edit.php');
 $router->patch('/posts/edit', 'controllers/posts/edit.php');
 
+$router->get('/posts/delete', 'controllers/posts/delete.php');
+$router->delete('/posts/delete', 'controllers/posts/delete.php');
+
 $router->post('/comments/add', 'controllers/comments/add.php');
 
 $router->get('/comments/edit', 'controllers/comments/edit.php');
