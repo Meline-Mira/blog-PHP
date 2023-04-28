@@ -3,7 +3,6 @@
 $postModel = createUserModel();
 
 $errors = [];
-$valid = 0;
 $role = 'user';
 $emailCompared = 'null';
 
@@ -35,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         $password = password_hash($passwordInput, PASSWORD_DEFAULT);
-        $postModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput, $valid, $role);
+        $postModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput, $role);
 
         header("Location: /users/waiting-for-validation");
         die;
@@ -45,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $twig = create_twig();
 
 echo $twig->render('/users/registration.html.twig', [
-    'page' => 'Inscritpion',
+    'page' => 'Inscription',
     'emailCompared' => $emailCompared,
     'errors' => $errors
 ]);

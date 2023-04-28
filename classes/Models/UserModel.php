@@ -10,12 +10,12 @@ class UserModel
     {
     }
 
-    public function createUser(string $email, string $password, string $firstName, string $lastName, int $valid, string $role)
+    public function createUser(string $email, string $password, string $firstName, string $lastName, string $role)
     {
         $this->database->execute('
-        INSERT INTO users(email, password, first_name, last_name, valid, role) 
-        VALUES (:email, :password, :first_name, :last_name, :valid, :role)',
-        ['email' => $email, 'password' => $password, 'first_name' => $firstName, 'last_name' => $lastName, 'valid' => $valid, 'role' => $role]);
+        INSERT INTO users(email, password, first_name, last_name, role) 
+        VALUES (:email, :password, :first_name, :last_name, :role)',
+        ['email' => $email, 'password' => $password, 'first_name' => $firstName, 'last_name' => $lastName, 'role' => $role]);
     }
 
     function getUser ($email) : array|false
