@@ -30,3 +30,6 @@ $router->get('/users/registration', 'controllers/users/registration.php');
 $router->post('/users/registration', 'controllers/users/registration.php');
 
 $router->get('/users/waiting-for-validation', 'controllers/users/waiting-for-validation.php');
+
+$router->get('/users/login', 'controllers/users/login.php');
+$router->post('/users/login', 'controllers/users/login.php');

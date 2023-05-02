@@ -1,6 +1,6 @@
 <?php
 
-$postModel = createUserModel();
+$userModel = createUserModel();
 
 $errors = [];
 $role = 'user';
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passwordInput = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
     $firstNameInput = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
     $lastNameInput = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
-    $emailCompared = $postModel->getUser($emailInput);
+    $emailCompared = $userModel->getUser($emailInput);
 
     if ($firstNameInput === '' || $firstNameInput === false) {
         $errors[] = 'Un prénom est demandé.';
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         $password = password_hash($passwordInput, PASSWORD_DEFAULT);
-        $postModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput, $role);
+        $userModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput, $role);
 
         header("Location: /users/waiting-for-validation");
         die;
