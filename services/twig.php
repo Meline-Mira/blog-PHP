@@ -26,6 +26,5 @@ function create_twig(): Environment
         $twig->addGlobal('logged_in', false);
     }
 
-
     return $twig;
 }
