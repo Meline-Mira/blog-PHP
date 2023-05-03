@@ -16,6 +16,16 @@ function create_twig(): Environment
     $function = new TwigFunction('urlIs', 'urlIs');
     $twig->addFunction($function);
     $twig->addGlobal('post', $_POST);
+    if (isset ($_SESSION['email'])) {
+        $twig->addGlobal('user_email', $_SESSION['email']);
+        $twig->addGlobal('user_first_name', $_SESSION['first_name']);
+        $twig->addGlobal('user_last_name', $_SESSION['last_name']);
+        $twig->addGlobal('user_role', $_SESSION['role']);
+        $twig->addGlobal('logged_in', true);
+    } else {
+        $twig->addGlobal('logged_in', false);
+    }
+
 
     return $twig;
 }

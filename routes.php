@@ -33,3 +33,5 @@ $router->get('/users/waiting-for-validation', 'controllers/users/waiting-for-val
 
 $router->get('/users/login', 'controllers/users/login.php');
 $router->post('/users/login', 'controllers/users/login.php');
+
+$router->get('/users/logout', 'controllers/users/logout.php');
