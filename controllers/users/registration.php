@@ -3,7 +3,6 @@
 $userModel = createUserModel();
 
 $errors = [];
-$role = 'user';
 $emailCompared = 'null';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         $password = password_hash($passwordInput, PASSWORD_DEFAULT);
-        $userModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput, $role);
+        $userModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput);
 
         header("Location: /users/waiting-for-validation");
         die;

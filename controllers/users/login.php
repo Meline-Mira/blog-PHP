@@ -8,7 +8,7 @@ $user = 'null';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $emailInput = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $passwordInput = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
-    $user = $userModel->getUser($emailInput);
+    $user = $userModel->loginUser($emailInput);
 
     if ($emailInput === '' || $emailInput === false) {
         $errors[] = 'Un email est demandé.';
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($passwordInput === '' || $passwordInput === false) {
         $errors[] = 'Un mot de passe est demandé.';
     }
-    if ($user === false || !password_verify($passwordInput, $user['password']) || $user['valid'] === 0) {
+    if ($user === false || !password_verify($passwordInput, $user['password'])) {
         $errors[] = 'Les identifiants sont incorrects.';
     }
 
