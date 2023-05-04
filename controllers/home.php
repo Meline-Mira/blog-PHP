@@ -7,21 +7,9 @@ $success = false;
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $emailInput = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $firstNameInput = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
-    $lastNameInput = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
     $messageInput = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
     $confidentialityInput = filter_input(INPUT_POST, 'confidentiality', FILTER_UNSAFE_RAW);
 
-    if ($emailInput === null || $emailInput === false) {
-        $errors[] = 'Une adresse email est demandée.';
-    }
-    if ($firstNameInput === '' || $firstNameInput === false) {
-        $errors[] = 'Un prénom est demandé.';
-    }
-    if ($lastNameInput === '' || $lastNameInput === false) {
-        $errors[] = 'Un nom est demandé.';
-    }
     if ($messageInput === '' || $messageInput === false) {
         $errors[] = 'Un message est demandé.';
     }
@@ -29,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Vous devez accepter la politique de confidentialité.';
     }
 
-    if (empty($errors)) {
+    if (empty($errors) && isset($_SESSION['id'])) {
         $mailer = create_mailer();
         $email = (new Email())
-            ->from(new Address($emailInput, $firstNameInput . ' ' . $lastNameInput))
+            ->from(new Address($_SESSION['email'], $_SESSION['first_name'] . ' ' . $_SESSION['last_name']))
             ->to('emeline.gineys@gmail.com')
             ->subject('Formulaire de contact')
             ->text($messageInput);

@@ -12,13 +12,15 @@
                         <!-- Current: "bg-blue-900 text-white", Default: "text-gray-300 hover:bg-blue-700 hover:text-white" -->
                         <a href="/" class="{{ urlIs('/') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Accueil</a>
 
-                        <a href="/posts/list" class="{{ urlIs('/posts/list') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Blogs posts</a>
+                        <a href="/posts/list" class="{{ urlStartsWith('/posts') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Blogs posts</a>
 
-                        <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs</a>
+                        {% if logged_in and user_role == 'admin' %}
+                            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs</a>
 
-                        <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Commentaires à valider</a>
+                            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Commentaires à valider</a>
 
-                        <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs à valider</a>
+                            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs à valider</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -59,13 +61,15 @@
             <!-- Current: "bg-blue-900 text-white", Default: "text-gray-300 hover:bg-blue-700 hover:text-white" -->
             <a href="/" class="{{ urlIs('/') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Accueil</a>
 
-            <a href="/posts/list" class="{{ urlIs('/posts/list') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Blogs posts</a>
+            <a href="/posts/list" class="{{ urlStartsWith('/posts') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Blogs posts</a>
 
-            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
+            {% if logged_in and user_role == 'admin' %}
+                <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
 
-            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Commentaires à valider</a>
+                <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Commentaires à valider</a>
 
-            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs à valider</a>
+                <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs à valider</a>
+            {% endif %}
         </div>
     </div>
 </nav>

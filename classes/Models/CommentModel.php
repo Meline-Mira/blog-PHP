@@ -18,18 +18,12 @@ class CommentModel
         ['content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt, 'id_post' => $idPost]);
     }
 
-    public function numberOfComments(int $idPost): int
-    {
-        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM comments WHERE id_post = :id_post', ['id_post' => $idPost]);
-        return $result['count'];
-    }
-
     public function getCommentsForAPost(int $idPost): array
     {
         return $this->database->fetchAll('
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
-        WHERE c.id_post = :id_post
+        WHERE c.id_post = :id_post AND c.validated = 1
         ORDER BY c.updated_at DESC',
         ['id_post' => $idPost]);
     }
