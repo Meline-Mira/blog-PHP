@@ -13,16 +13,16 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         $contentInput = filter_input(INPUT_POST, 'content', FILTER_UNSAFE_RAW);
         $imageDescriptionInput = filter_input(INPUT_POST, 'image_description', FILTER_UNSAFE_RAW);
 
-        if ($titleInput === '' || $titleInput === false) {
+        if (empty($titleInput)) {
             $errors[] = 'Un titre est demandé.';
         }
         if (strlen($titleInput) >= 250) {
             $errors[] = 'Le titre doit faire moins de 250 caractères.';
         }
-        if ($summaryInput === '' || $summaryInput === false) {
+        if (empty($summaryInput)) {
             $errors[] = 'Un chapô est demandé.';
         }
-        if ($contentInput === '' || $contentInput === false) {
+        if (empty($contentInput)) {
             $errors[] = 'Un contenu est demandé.';
         }
         if ($_FILES['image']['error'] === UPLOAD_ERR_NO_FILE) {
@@ -34,7 +34,7 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         if (!in_array(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg'])) {
             $errors[] = 'Votre format d\'image n\'est pas accepté.';
         }
-        if ($imageDescriptionInput === '' || $imageDescriptionInput === false) {
+        if (empty($imageDescriptionInput)) {
             $errors[] = 'Une description de l\'image est demandé.';
         }
         if (strlen($imageDescriptionInput) >= 100) {

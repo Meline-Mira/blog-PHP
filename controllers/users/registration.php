@@ -12,19 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastNameInput = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
     $emailCompared = $userModel->getUser($emailInput);
 
-    if ($firstNameInput === '' || $firstNameInput === false) {
+    if (empty($firstNameInput)) {
         $errors[] = 'Un prénom est demandé.';
     }
-    if ($lastNameInput === '' || $lastNameInput === false) {
+    if (empty($lastNameInput)) {
         $errors[] = 'Un nom est demandé.';
     }
-    if ($emailInput === '' || $emailInput === false) {
+    if (empty($emailInput)) {
         $errors[] = 'Un email est demandé.';
     }
     if ($emailInput === $emailCompared['email']) {
         $errors[] = 'L\'email est incorrect.';
     }
-    if ($passwordInput === '' || $passwordInput === false) {
+    if (empty($passwordInput)) {
         $errors[] = 'Un mot de passe est demandé.';
     }
     if (strlen($passwordInput) < 8) {

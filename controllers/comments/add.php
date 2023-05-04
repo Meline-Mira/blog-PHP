@@ -12,11 +12,11 @@ if (isset ($_SESSION['id'])) {
         $idPostInput = filter_input(INPUT_POST, 'id_post', FILTER_SANITIZE_NUMBER_INT);
         $currentPageInput = filter_input(INPUT_POST, 'current_page', FILTER_SANITIZE_NUMBER_INT);
 
-        if ($contentInput === '' || $contentInput === false) {
+        if (empty($contentInput)) {
             $error = 'Un commentaire est demandé.';
         }
 
-        if ($error === null) {
+        if (!$error) {
             $commentModel->addComment($contentInput, $idUser, $updatedAt, $idPostInput);
 
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPageInput . "#comments");

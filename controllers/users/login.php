@@ -10,13 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passwordInput = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
     $user = $userModel->loginUser($emailInput);
 
-    if ($emailInput === '' || $emailInput === false) {
+    if (empty($emailInput)) {
         $errors[] = 'Un email est demandé.';
     }
-    if ($passwordInput === '' || $passwordInput === false) {
+    if (empty($passwordInput)) {
         $errors[] = 'Un mot de passe est demandé.';
     }
-    if ($user === false || !password_verify($passwordInput, $user['password'])) {
+    if (!$user || !password_verify($passwordInput, $user['password'])) {
         $errors[] = 'Les identifiants sont incorrects.';
     }
 

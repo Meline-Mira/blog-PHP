@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $messageInput = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
     $confidentialityInput = filter_input(INPUT_POST, 'confidentiality', FILTER_UNSAFE_RAW);
 
-    if ($messageInput === '' || $messageInput === false) {
+    if (empty($messageInput)) {
         $errors[] = 'Un message est demandé.';
     }
     if ($confidentialityInput !== 'on') {

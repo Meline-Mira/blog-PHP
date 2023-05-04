@@ -13,11 +13,11 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         $contentInput = filter_input(INPUT_POST, 'content', FILTER_UNSAFE_RAW);
         $idComment = filter_input(INPUT_POST, 'id_comment', FILTER_SANITIZE_NUMBER_INT);
 
-        if ($contentInput === '' || $contentInput === false) {
+        if (empty($contentInput)) {
             $error = 'Un commentaire est demandé.';
         }
 
-        if ($error === null) {
+        if (!$error) {
             $commentModel->editCommentByAdmin($contentInput, $idComment);
 
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPage . "#comments");
