@@ -5,6 +5,8 @@ $router->post('/', 'controllers/home.php');
 
 $router->get('/contact-form-sent', 'controllers/contact-form-sent.php');
 
+//posts management
+
 $router->get('/posts/add', 'controllers/posts/add.php');
 $router->post('/posts/add', 'controllers/posts/add.php');
 
@@ -18,13 +20,21 @@ $router->patch('/posts/edit', 'controllers/posts/edit.php');
 $router->get('/posts/delete', 'controllers/posts/delete.php');
 $router->delete('/posts/delete', 'controllers/posts/delete.php');
 
+//comments management
+
 $router->post('/comments/add', 'controllers/comments/add.php');
+
+$router->get('/comments/validation', 'controllers/comments/validation.php');
+
+$router->patch('/comments/is-valid', 'controllers/comments/is-valid.php');
 
 $router->get('/comments/edit', 'controllers/comments/edit.php');
 $router->patch('/comments/edit', 'controllers/comments/edit.php');
 
 $router->get('/comments/delete', 'controllers/comments/delete.php');
 $router->delete('/comments/delete', 'controllers/comments/delete.php');
+
+//users management
 
 $router->get('/users/registration', 'controllers/users/registration.php');
 $router->post('/users/registration', 'controllers/users/registration.php');

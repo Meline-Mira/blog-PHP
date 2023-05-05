@@ -1,0 +1,19 @@
+{{ include('layout/header.html.twig') }}
+{% if comments|length > 0 %}
+    {% set previous_id_post = -1 %}
+    {% for comment in comments %}
+        {% if previous_id_post != comment.id_post %}
+        <p class="pb-3">Commentaires du blog post :</p>
+        <div class="group relative bg-blue-100 rounded-lg px-5 py-4 mb-6 text-gray-700">
+            <p class="font-bold">{{ comment.title }}</p>
+            <p>{{ comment.summary|nl2br }}</p>
+        </div>
+        {% endif %}
+
+        {{ include('partials/comments/comments-layout.html.twig') }}
+        {% set previous_id_post = comment.id_post %}
+    {% endfor %}
+{% else %}
+    <p>Il n'y a plus de commentaire à valider.</p>
+{% endif %}
+{{ include('layout/footer.html.twig') }}

@@ -28,6 +28,31 @@ class CommentModel
         ['id_post' => $idPost]);
     }
 
+    public function getCommentsForValidation(): array
+    {
+        return $this->database->fetchAll('
+        SELECT c.*, u.first_name, u.last_name, p.title, p.summary FROM comments c
+        LEFT JOIN users u ON c.id_user = u.id
+        LEFT JOIN posts p ON c.id_post = p.id                                                         
+        WHERE c.validated = 0
+        ORDER BY c.id_post');
+    }
+
+    public function numberOfCommentsNotValidated(): int
+    {
+        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM comments WHERE validated = 0');
+        return $result['count'];
+    }
+
+    public function validateTheComment(int $idComment)
+    {
+        $this->database->execute('
+        UPDATE comments
+        SET validated = 1
+        WHERE id = :id',
+        ['id' => $idComment]);
+    }
+
     public function getOneComment(int $idComment): array
     {
         return $this->database->fetchOne('

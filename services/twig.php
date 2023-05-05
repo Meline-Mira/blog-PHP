@@ -7,6 +7,8 @@ use Twig\TwigFunction;
 
 function create_twig(): Environment
 {
+    $commentModel = createCommentModel();
+
     $loader = new FilesystemLoader(__DIR__ . '/../views');
     $twig = new Environment($loader, [
         'cache' => false/*__DIR__ . '/../var/cache'*/,
@@ -15,6 +17,7 @@ function create_twig(): Environment
     $twig->addExtension(new IntlExtension());
     $twig->addFunction(new TwigFunction('urlIs', 'urlIs'));
     $twig->addFunction(new TwigFunction('urlStartsWith', 'urlStartsWith'));
+    $twig->addFunction(new TwigFunction('numberOfCommentsNotValidated', [$commentModel, 'numberOfCommentsNotValidated']));
     $twig->addGlobal('post', $_POST);
     if (isset ($_SESSION['email'])) {
         $twig->addGlobal('user_email', $_SESSION['email']);

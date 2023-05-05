@@ -1,10 +1,10 @@
 <?php
 
 $model = createBlogPostModel();
-$post = $model->getPostFromId(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+$idPost = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$post = $model->getPostFromId($idPost);
 
 $commentModel = createCommentModel();
-$idPost = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $currentPage = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_INT) ?? 1;
 $comments = $commentModel->getCommentsForAPost($idPost);
 
