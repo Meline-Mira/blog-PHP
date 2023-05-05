@@ -1,0 +1,50 @@
+{{ include('layout/header.html.twig') }}
+
+<div class="mx-auto max-w-2xl py-4 lg:max-w-none">
+    <a href="/users/list">{{ include('heroicons/return.svg') }}</a>
+
+    <div class="mt-4">
+        <div class="group relative bg-blue-100 rounded-lg px-5 py-4 mb-6 text-gray-700">
+            <p>Compte de : {{ user.first_name }} {{ user.last_name }}</p>
+            <p>Email : {{ user.email }}</p>
+            <p>Rôle : {{ user.role }}</p>
+            <p>
+                État du compte :
+                {% if user.validate == 0 %}
+                    Non validé
+                {% else %}
+                    Validé
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="mx-auto max-w-2xl mb-2 text-center">
+            {% if error %}
+                <ul class="text-sm text-red-500 mt-3">
+                    <li>{{ error }}</li>
+                </ul>
+            {% endif %}
+        </div>
+        <form method="POST" class="relative mb-6">
+            <input type="hidden" name="_method" value="PATCH" />
+
+            <div class="p-4 bg-white overflow-hidden rounded-lg border border-blue-200 shadow-sm focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                Quel rôle souhaitez-vous donner à cet utilisateur ? :<br>
+                <input type="radio" name="role" value="user" id="user"> <label for="user">User</label><br>
+                <input type="radio" name="role" value="admin" id="admin"> <label for="admin">Admin</label><br>
+                <input id="id_user" name="id_user" type="hidden" value="{{ user.id }}">
+
+                <div aria-hidden="true" class="h-14"></div>
+            </div>
+
+            <div class="absolute inset-x-px bottom-0">
+                <div class="flex items-center justify-end space-x-3 border-t border-blue-100 px-2 py-2 sm:px-3">
+                    <div class="flex-shrink-0">
+                        <button type="submit" class="inline-flex items-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Changer le rôle</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{{ include('layout/footer.html.twig') }}

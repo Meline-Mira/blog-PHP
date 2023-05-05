@@ -18,6 +18,28 @@ class UserModel
         ['email' => $email, 'password' => $password, 'first_name' => $firstName, 'last_name' => $lastName, 'role' => $role]);
     }
 
+    public function numberOfUsersNotValidated(): int
+    {
+        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM users WHERE validated = 0');
+        return $result['count'];
+    }
+
+    public function getUsersList(): array
+    {
+        return $this->database->fetchAll('
+        SELECT * FROM users
+        ORDER BY validated');
+    }
+
+    public function validateTheUser(int $idUser)
+    {
+        $this->database->execute('
+        UPDATE users
+        SET validated = 1
+        WHERE id = :id',
+        ['id' => $idUser]);
+    }
+
     function getUser ($email) : array|false
     {
         return $this->database->fetchOne('
@@ -34,10 +56,24 @@ class UserModel
         ['email' => $email]);
     }
 
-    public function getUsersList(): array
+    function getOneUserWithId ($idUser) : array|false
     {
-        return $this->database->fetchAll('
-        SELECT first_name, last_name, email, `role`, validated FROM users
-        ORDER BY validated');
+        return $this->database->fetchOne('
+        SELECT * FROM users
+        WHERE id = :id',
+        ['id' => $idUser]);
+    }
+    public function deleteUser(int $idUser): void
+    {
+        $this->database->execute('DELETE FROM users WHERE id = :id', ['id' => $idUser]);
+    }
+
+    public function changeTheUserRole(string $role, int $idUser)
+    {
+        $this->database->execute('
+        UPDATE users
+        SET role = :role
+        WHERE id = :id',
+        ['role' => $role, 'id' => $idUser]);
     }
 }

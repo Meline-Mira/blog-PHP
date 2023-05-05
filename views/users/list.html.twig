@@ -1,26 +1,38 @@
 {{ include('layout/header.html.twig') }}
-<div class="grid grid-cols-10">
-    <div class="col-span-2 py-4 border-b-2 border-blue-200 font-semibold">Prénom et Nom</div>
-    <div class="col-span-3 py-4 border-b-2 border-blue-200 font-semibold">Email</div>
-    <div class="border-b-2 py-4 border-blue-200 font-semibold">Rôle</div>
-    <div class="border-b-2 py-4 border-blue-200 font-semibold">État</div>
-    <div class="border-b-2 py-4 border-blue-200"></div>
-    <div class="border-b-2 py-4 border-blue-200"></div>
-    <div class="border-b-2 py-4 border-blue-200"></div>
+<div class="grid grid-cols-1 lg:grid-cols-10">
+    <div class="hidden lg:block lg:col-span-2 lg:py-4 border-b-2 border-blue-200 font-semibold">Prénom et Nom</div>
+    <div class="hidden lg:block lg:col-span-3 lg:py-4 border-b-2 border-blue-200 font-semibold">Email</div>
+    <div class="hidden lg:block border-b-2 lg:py-4 border-blue-200 font-semibold">Rôle</div>
+    <div class="hidden lg:block border-b-2 lg:py-4 border-blue-200 font-semibold">État</div>
+    <div class="hidden lg:block border-b-2 lg:py-4 border-blue-200"></div>
+    <div class="hidden lg:block border-b-2 lg:py-4 border-blue-200"></div>
+    <div class="hidden lg:block border-b-2 lg:py-4 border-blue-200"></div>
     {% for user in users %}
-        <div class="col-span-2 py-4 border-b border-blue-200">{{ user.first_name }} {{ user.last_name }}</div>
-        <div class="col-span-3 py-4 border-b border-blue-200">{{ user.email }}</div>
-        <div class="py-4 border-b border-blue-200">{{ user.role }}</div>
-        <div class="py-4 border-b border-blue-200">
+        <div class="lg:col-span-2 lg:py-4 lg:border-b lg:border-blue-200">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="lg:col-span-3 lg:py-4 lg:border-b lg:border-blue-200">{{ user.email }}</div>
+        <div class="lg:py-4 lg:border-b lg:border-blue-200">{{ user.role }}</div>
+        <div class="lg:py-4 lg:border-b lg:border-blue-200">
             {% if user.validated == 0 %}
-                non validé
+                Non validé
             {% else %}
-                validé
+                Validé
             {% endif %}
         </div>
-        <div class="py-4 border-b border-blue-200">validation</div>
-        <div class="py-4 border-b border-blue-200">changer rôle</div>
-        <div class="py-4 border-b border-blue-200">supprimer</div>
+        <div class="py-1 lg:py-4 lg:border-b lg:border-blue-200">
+            {% if user.validated == 0 %}
+            <form method="POST" action="/users/is-valid" class="inline">
+                <input type="hidden" name="_method" value="PATCH" />
+                <input id="id_user" name="id_user" type="hidden" value="{{ user.id }}">
+                <button type="submit" class="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Valider</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="py-1 lg:py-4 lg:border-b lg:border-blue-200">
+            <a href="/users/change-role?id_user={{ user.id }}" class="inline-flex items-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Rôle</a>
+        </div>
+        <div class="py-1 lg:py-4 border-b border-blue-200">
+            <a href="/users/delete?id_user={{ user.id }}" class="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Supprimer</a>
+        </div>
     {% endfor %}
 </div>
 {{ include('layout/footer.html.twig') }}

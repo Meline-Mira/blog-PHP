@@ -41,9 +41,17 @@ $router->post('/users/registration', 'controllers/users/registration.php');
 
 $router->get('/users/waiting-for-validation', 'controllers/users/waiting-for-validation.php');
 
+$router->get('/users/list', 'controllers/users/list.php');
+
+$router->patch('/users/is-valid', 'controllers/users/is-valid.php');
+
 $router->get('/users/login', 'controllers/users/login.php');
 $router->post('/users/login', 'controllers/users/login.php');
 
 $router->get('/users/logout', 'controllers/users/logout.php');
 
-$router->get('/users/list', 'controllers/users/list.php');
+$router->get('/users/delete', 'controllers/users/delete.php');
+$router->delete('/users/delete', 'controllers/users/delete.php');
+
+$router->get('/users/change-role', 'controllers/users/change-role.php');
+$router->patch('/users/change-role', 'controllers/users/change-role.php');
