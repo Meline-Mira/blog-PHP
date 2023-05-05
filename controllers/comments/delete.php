@@ -26,6 +26,7 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'page' => "Suppression d'un commentaire",
         'comment' => $comment,
         'current_page' => $currentPage,
+        'from' => $from
     ]);
 } else {
     header("Location: /users/login");

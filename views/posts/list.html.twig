@@ -25,6 +25,11 @@
             {% if not pagination.isFirstPage %}
                 <a href="{{ pagination.previousPageLink }}" class="relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Précédent</a>
             {% endif %}
+            {% if logged_in and user_role == 'admin' %}
+                <div>
+                    <a href="/posts/add" class="relative ml-3 inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-500">Ajouter un blog post</a>
+                </div>
+            {% endif %}
             {% if not pagination.isLastPage %}
                 <a href="{{ pagination.nextPageLink }}" class="relative ml-3 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">Suivant</a>
             {% endif %}

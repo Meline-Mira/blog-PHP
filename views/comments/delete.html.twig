@@ -20,7 +20,11 @@
                     </div>
 
                     <div>
-                        <a href="/posts/read?id={{ comment.id_post }}&current_page={{ current_page }}#comments" class="inline-flex items-center rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Annuler</a>
+                        {% if from == "posts" %}
+                            <a href="/posts/read?id={{ comment.id_post }}&current_page={{ current_page }}#comments" class="inline-flex items-center rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Annuler</a>
+                        {% else %}
+                            <a href="/comments/validation" class="inline-flex items-center rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Annuler</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

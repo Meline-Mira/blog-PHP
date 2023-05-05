@@ -1,7 +1,11 @@
 {{ include('layout/header.html.twig') }}
 
 <div class="mx-auto max-w-2xl py-4 lg:max-w-none">
-    <a href="/posts/read?id={{ comment.id_post }}&current_page={{ current_page }}#comments">{{ include('heroicons/return.svg') }}</a>
+    {% if from == "posts" %}
+        <a href="/posts/read?id={{ comment.id_post }}&current_page={{ current_page }}#comments">{{ include('heroicons/return.svg') }}</a>
+    {% else %}
+        <a href="/comments/validation">{{ include('heroicons/return.svg') }}</a>
+    {% endif %}
 
     <div class="mt-4">
         <div class="mx-auto max-w-2xl mb-2 text-center">

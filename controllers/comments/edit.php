@@ -36,7 +36,8 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'page' => "Édition d'un commentaire",
         'comment' => $comment,
         'current_page' => $currentPage,
-        'error' => $error
+        'error' => $error,
+        'from' => $from
     ]);
 } else {
     header("Location: /users/login");
