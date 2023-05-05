@@ -15,7 +15,7 @@
                         <a href="/posts/list" class="{{ urlStartsWith('/posts') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Blogs posts</a>
 
                         {% if logged_in and user_role == 'admin' %}
-                            <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs</a>
+                            <a href="/users/list" class="{{ urlIs('/users/list') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Utilisateurs</a>
 
                             <a href="/comments/validation" class="{{ urlIs('/comments/validation') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"><span class="bg-blue-200 text-blue-900 text-xs px-1 rounded-full">{{ numberOfCommentsNotValidated() }}</span> Commentaires à valider</a>
                         {% endif %}
@@ -61,7 +61,7 @@
             <a href="/posts/list" class="{{ urlStartsWith('/posts') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Blogs posts</a>
 
             {% if logged_in and user_role == 'admin' %}
-                <a href="#" class="{{ urlIs('#') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
+                <a href="/users/list" class="{{ urlIs('/users/list') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
 
                 <a href="/comments/validation" class="{{ urlIs('/comments/validation') ? 'bg-blue-900 text-white' : 'text-gray-300' }} hover:bg-blue-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><span class="bg-blue-200 text-blue-900 text-xs px-1 rounded-full">{{ numberOfCommentsNotValidated() }}</span> Commentaires à valider</a>
             {% endif %}

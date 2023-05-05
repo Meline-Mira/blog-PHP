@@ -45,3 +45,5 @@ $router->get('/users/login', 'controllers/users/login.php');
 $router->post('/users/login', 'controllers/users/login.php');
 
 $router->get('/users/logout', 'controllers/users/logout.php');
+
+$router->get('/users/list', 'controllers/users/list.php');

@@ -1,0 +1,26 @@
+{{ include('layout/header.html.twig') }}
+<div class="grid grid-cols-10">
+    <div class="col-span-2 py-4 border-b-2 border-blue-200 font-semibold">Prénom et Nom</div>
+    <div class="col-span-3 py-4 border-b-2 border-blue-200 font-semibold">Email</div>
+    <div class="border-b-2 py-4 border-blue-200 font-semibold">Rôle</div>
+    <div class="border-b-2 py-4 border-blue-200 font-semibold">État</div>
+    <div class="border-b-2 py-4 border-blue-200"></div>
+    <div class="border-b-2 py-4 border-blue-200"></div>
+    <div class="border-b-2 py-4 border-blue-200"></div>
+    {% for user in users %}
+        <div class="col-span-2 py-4 border-b border-blue-200">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="col-span-3 py-4 border-b border-blue-200">{{ user.email }}</div>
+        <div class="py-4 border-b border-blue-200">{{ user.role }}</div>
+        <div class="py-4 border-b border-blue-200">
+            {% if user.validated == 0 %}
+                non validé
+            {% else %}
+                validé
+            {% endif %}
+        </div>
+        <div class="py-4 border-b border-blue-200">validation</div>
+        <div class="py-4 border-b border-blue-200">changer rôle</div>
+        <div class="py-4 border-b border-blue-200">supprimer</div>
+    {% endfor %}
+</div>
+{{ include('layout/footer.html.twig') }}

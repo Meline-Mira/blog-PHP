@@ -33,4 +33,11 @@ class UserModel
         WHERE email = :email AND validated = 1',
         ['email' => $email]);
     }
+
+    public function getUsersList(): array
+    {
+        return $this->database->fetchAll('
+        SELECT first_name, last_name, email, `role`, validated FROM users
+        ORDER BY validated');
+    }
 }
