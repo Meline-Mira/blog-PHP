@@ -3,6 +3,11 @@
 const BASE_PATH = __DIR__ . '/../';
 require_once BASE_PATH . 'vendor/autoload.php';
 
+session_set_cookie_params([
+    'lifetime' => 3600,
+    'samesite' => 'Strict',
+    'httponly' => true,
+]);
 session_start();
 
 require_once BASE_PATH . '.env.example.php';

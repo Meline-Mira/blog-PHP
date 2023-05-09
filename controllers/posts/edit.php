@@ -31,7 +31,9 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             $errors[] = 'L\'image est trop lourde.';
         }
         if ($_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE &&
-            !in_array(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg'])) {
+            !in_array(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg']) ||
+            !in_array(exif_imagetype($_FILES['image']['tmp_name']), [IMAGETYPE_JPEG, IMAGETYPE_PNG])
+            ) {
             $errors[] = 'Votre format d\'image n\'est pas accepté.';
         }
         if (empty($imageDescriptionInput)) {

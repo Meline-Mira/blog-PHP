@@ -27,4 +27,4 @@ Symfony Mailer.
 
 ## Configure the database connexion
 
-The chosen database engine is MySQL (MariaDB). In `.env.local.php` inform the variables values.
+Importe the database.sql file. The database engine I choose is MySQL (MariaDB). In `.env.local.php` fill in the variable values.
