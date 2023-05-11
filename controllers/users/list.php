@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\UserModel;
+
 if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    $userModel = createUserModel();
+    $userModel = new UserModel();
     $users = $userModel->getUsersList();
 
     $twig = create_twig();

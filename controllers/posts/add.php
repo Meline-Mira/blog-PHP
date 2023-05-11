@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\BlogPostModel;
+
 if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    $postModel = createBlogPostModel();
+    $postModel = new BlogPostModel();
 
     $errors = [];
     $idUser = $_SESSION['id'];

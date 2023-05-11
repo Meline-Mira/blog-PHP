@@ -4,15 +4,11 @@ namespace App\Models;
 
 use App\Database;
 
-class CommentModel
+class CommentModel extends Database
 {
-    public function __construct(private Database $database)
-    {
-    }
-
     public function addComment(string $content, int $idUser, string $updatedAt, int $idPost)
     {
-        $this->database->execute('
+        $this->execute('
         INSERT INTO comments(content, id_user, updated_at, id_post, validated) 
         VALUES (:content, :id_user, :updated_at, :id_post, 0)',
         ['content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt, 'id_post' => $idPost]);
@@ -20,7 +16,7 @@ class CommentModel
 
     public function getCommentsForAPost(int $idPost): array
     {
-        return $this->database->fetchAll('
+        return $this->fetchAll('
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id_post = :id_post AND c.validated = 1
@@ -30,7 +26,7 @@ class CommentModel
 
     public function getCommentsForValidation(): array
     {
-        return $this->database->fetchAll('
+        return $this->fetchAll('
         SELECT c.*, u.first_name, u.last_name, p.title, p.summary FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         LEFT JOIN posts p ON c.id_post = p.id                                                         
@@ -40,13 +36,13 @@ class CommentModel
 
     public function numberOfCommentsNotValidated(): int
     {
-        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM comments WHERE validated = 0');
+        $result = $this->fetchOne('SELECT COUNT(*) AS count FROM comments WHERE validated = 0');
         return $result['count'];
     }
 
     public function validateTheComment(int $idComment)
     {
-        $this->database->execute('
+        $this->execute('
         UPDATE comments
         SET validated = 1
         WHERE id = :id',
@@ -55,7 +51,7 @@ class CommentModel
 
     public function getOneComment(int $idComment): array
     {
-        return $this->database->fetchOne('
+        return $this->fetchOne('
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id = :id',
@@ -64,7 +60,7 @@ class CommentModel
 
     public function editCommentByAdmin(string $content, int $idComment)
     {
-        $this->database->execute('
+        $this->execute('
         UPDATE comments
         SET content = :content, validated = 1
         WHERE id = :id',
@@ -73,6 +69,6 @@ class CommentModel
 
     public function deleteComment(int $idComment): void
     {
-        $this->database->execute('DELETE FROM comments WHERE id = :id', ['id' => $idComment]);
+        $this->execute('DELETE FROM comments WHERE id = :id', ['id' => $idComment]);
     }
 }

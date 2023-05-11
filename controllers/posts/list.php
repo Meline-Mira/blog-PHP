@@ -1,6 +1,8 @@
 <?php
 
-$model = createBlogPostModel();
+use App\Models\BlogPostModel;
+
+$model = new BlogPostModel();
 $postsPerPage = 9;
 $numberOfPosts = $model->numberOfPosts();
 $currentPage = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_INT) ?? 1;

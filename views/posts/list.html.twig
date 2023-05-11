@@ -80,8 +80,6 @@
                         {% endif %}
                         >{{ currentPage }}</a>
                     {% endfor %}
-                    {# Code HTML si on veut faire une ellipse #}
-                    {# <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>#}
                     {% if not pagination.isLastPage %}
                         <a href="{{ pagination.nextPageLink }}" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-blue-100 focus:z-20 focus:outline-offset-0">
                             <span class="sr-only">Suivant</span>

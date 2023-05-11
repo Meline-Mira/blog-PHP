@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\CommentModel;
+
 if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    $commentModel = createCommentModel();
+    $commentModel = new CommentModel();
     $comments = $commentModel->getCommentsForValidation();
 
     $twig = create_twig();

@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\CommentModel;
+
 if (isset ($_SESSION['id'])) {
-    $commentModel = createCommentModel();
+    $commentModel = new CommentModel();
 
     $error = null;
     $idUser = $_SESSION['id'];
@@ -18,6 +20,7 @@ if (isset ($_SESSION['id'])) {
 
         if (!$error) {
             $commentModel->addComment($contentInput, $idUser, $updatedAt, $idPostInput);
+            $_SESSION['notif_comments'] = $commentModel->numberOfCommentsNotValidated();
 
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPageInput . "#comments");
         } else {

@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\BlogPostModel;
+
 if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    $postModel = createBlogPostModel();
+    $postModel = new BlogPostModel();
     $idPostInput = filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT);
     $currentPage = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_INT);
     $post = $postModel->getPostFromId($idPostInput);

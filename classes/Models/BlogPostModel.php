@@ -4,15 +4,11 @@ namespace App\Models;
 
 use App\Database;
 
-class BlogPostModel
+class BlogPostModel extends Database
 {
-    public function __construct(private Database $database)
-    {
-    }
-
     public function addPost(string $title, string $summary, string $content, string $imageUrl, string $imageDescription, int $idUser, string $updatedAt)
     {
-        $this->database->execute('
+        $this->execute('
         INSERT INTO posts(title, summary, content, image_url, image_description, id_user, updated_at) 
         VALUES (:title, :summary, :content, :image_url, :image_description, :id_user, :updated_at)',
         ['title' => $title, 'summary' => $summary, 'content' => $content, 'image_url' => $imageUrl, 'image_description' => $imageDescription, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
@@ -20,7 +16,7 @@ class BlogPostModel
 
     public function editBlogPosts(int $idPost, string $title, string $summary, string $content, string $imageDescription, string $updatedAt): void
     {
-        $this->database->execute('
+        $this->execute('
         UPDATE posts
         SET title = :title, summary = :summary, content = :content, image_description = :image_description, updated_at = :updated_at 
         WHERE id = :id',
@@ -29,7 +25,7 @@ class BlogPostModel
 
     public function changeBlogPostImage(int $idPost, string $imageUrl): void
     {
-        $this->database->execute('
+        $this->execute('
         UPDATE posts
         SET image_url = :image_url
         WHERE id = :id',
@@ -40,7 +36,7 @@ class BlogPostModel
     {
         $offset = ($current_page - 1) * $postsPerPage;
 
-        return $this->database->fetchAll('
+        return $this->fetchAll('
         SELECT p.*, u.first_name, u.last_name FROM posts p
         LEFT JOIN users u ON p.id_user = u.id
         ORDER BY p.updated_at DESC
@@ -50,13 +46,13 @@ class BlogPostModel
 
     public function numberOfPosts(): int
     {
-        $result = $this->database->fetchOne('SELECT COUNT(*) AS count FROM posts');
+        $result = $this->fetchOne('SELECT COUNT(*) AS count FROM posts');
         return $result['count'];
     }
 
     public function getPostFromId(int $idPost): array
     {
-        return $this->database->fetchOne('
+        return $this->fetchOne('
         SELECT p.*, u.first_name, u.last_name FROM posts p
         LEFT JOIN users u ON p.id_user = u.id 
         WHERE p.id = :id',
@@ -65,6 +61,6 @@ class BlogPostModel
 
     public function deletePost(int $idPost): void
     {
-        $this->database->execute('DELETE FROM posts WHERE id = :id', ['id' => $idPost]);
+        $this->execute('DELETE FROM posts WHERE id = :id', ['id' => $idPost]);
     }
 }

@@ -7,9 +7,6 @@ use Twig\TwigFunction;
 
 function create_twig(): Environment
 {
-    $commentModel = createCommentModel();
-    $userModel = createUserModel();
-
     $loader = new FilesystemLoader(__DIR__ . '/../views');
     $twig = new Environment($loader, [
         'cache' => false/*__DIR__ . '/../var/cache'*/,
@@ -18,8 +15,6 @@ function create_twig(): Environment
     $twig->addExtension(new IntlExtension());
     $twig->addFunction(new TwigFunction('urlIs', 'urlIs'));
     $twig->addFunction(new TwigFunction('urlStartsWith', 'urlStartsWith'));
-    $twig->addFunction(new TwigFunction('numberOfCommentsNotValidated', [$commentModel, 'numberOfCommentsNotValidated']));
-    $twig->addFunction(new TwigFunction('numberOfUsersNotValidated', [$userModel, 'numberOfUsersNotValidated']));
     $twig->addGlobal('post', $_POST);
     if (isset ($_SESSION['email'])) {
         $twig->addGlobal('user_email', $_SESSION['email']);
@@ -27,6 +22,8 @@ function create_twig(): Environment
         $twig->addGlobal('user_last_name', $_SESSION['last_name']);
         $twig->addGlobal('user_role', $_SESSION['role']);
         $twig->addGlobal('user_id', $_SESSION['id']);
+        $twig->addGlobal('notif_comments', $_SESSION['notif_comments'] ?? 0);
+        $twig->addGlobal('notif_users', $_SESSION['notif_users'] ?? 0);
         $twig->addGlobal('logged_in', true);
     } else {
         $twig->addGlobal('logged_in', false);

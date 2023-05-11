@@ -1,6 +1,9 @@
 <?php
 
-$userModel = createUserModel();
+use App\Models\CommentModel;
+use App\Models\UserModel;
+
+$userModel = new UserModel();
 
 $errors = [];
 $user = 'null';
@@ -21,11 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errors) {
+        $comments = new CommentModel();
+        $users = new UserModel();
+
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['notif_comments'] = $comments->numberOfCommentsNotValidated();
+        $_SESSION['notif_users'] = $users->numberOfUsersNotValidated();
         header("Location: /");
         die;
     }
