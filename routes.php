@@ -5,6 +5,8 @@ $router->post('/', 'controllers/home.php');
 
 $router->get('/contact-form-sent', 'controllers/contact-form-sent.php');
 
+$router->get('/mandatory-info', 'controllers/mandatory-info.php');
+
 //posts management
 
 $router->get('/posts/add', 'controllers/posts/add.php');
