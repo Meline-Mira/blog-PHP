@@ -37,12 +37,21 @@ class Router
 
     public function route($uri, $method)
     {
+        $urlFound = false;
         foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                return require basePath($route['controller']);
+            if ($route['uri'] === $uri) {
+                if ($route['method'] === strtoupper($method)) {
+                    return require basePath($route['controller']);
+                } else {
+                    $urlFound = true;
+                }
             }
         }
 
-        echo "Error 404, not found";
+        if ($urlFound) {
+            error("La méthode HTTP utilisée n'est pas correcte.", 405);
+        } else {
+            error("La page n'a pas été trouvée.", 404);
+        }
     }
 }

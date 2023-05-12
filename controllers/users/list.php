@@ -13,5 +13,5 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'users' => $users
     ]);
 } else {
-    header("Location: /");
+    error("Vous n'êtes pas autorisé à accéder à cette page.", 403);
 }

@@ -14,3 +14,12 @@ function basePath($path)
 {
     return BASE_PATH . $path;
 }
+
+function error(string $message, int $code)
+{
+    $twig = create_twig();
+    http_response_code($code);
+    echo $twig->render('error.html.twig', ['page' => 'Erreur', 'message' => $message, 'code' => $code]);
+
+    die;
+}

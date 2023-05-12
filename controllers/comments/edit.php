@@ -43,5 +43,5 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'from' => $from
     ]);
 } else {
-    header("Location: /users/login");
+    error("Vous n'êtes pas autorisé à accéder à cette page.", 403);
 }
