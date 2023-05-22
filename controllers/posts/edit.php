@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\BlogPostModel;
+use App\Models\UserModel;
 
 if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $postModel = new BlogPostModel();
@@ -8,15 +9,22 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $currentPageInput = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_INT);
     $post = $postModel->getPostFromId($idPostInput);
 
+    $userModel = new UserModel();
+    $users = $userModel->getUsersList();
+
     $errors = [];
     $updatedAt = date("Y-m-d-H:i:s");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $userInput = filter_input(INPUT_POST, 'id_user', FILTER_SANITIZE_NUMBER_INT);
         $titleInput = filter_input(INPUT_POST, 'title', FILTER_UNSAFE_RAW);
         $summaryInput = filter_input(INPUT_POST, 'summary', FILTER_UNSAFE_RAW);
         $contentInput = filter_input(INPUT_POST, 'content', FILTER_UNSAFE_RAW);
         $imageDescriptionInput = filter_input(INPUT_POST, 'image_description', FILTER_UNSAFE_RAW);
 
+        if (empty($userInput)) {
+            $errors[] = 'Un auteur est demandé.';
+        }
         if (empty($titleInput)) {
             $errors[] = 'Un titre est demandé.';
         }
@@ -53,7 +61,7 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 $postModel->changeBlogPostImage($idPostInput, $imageUrl);
             }
 
-            $postModel->editBlogPosts($idPostInput, $titleInput, $summaryInput, $contentInput, $imageDescriptionInput, $updatedAt);
+            $postModel->editBlogPosts($idPostInput, $titleInput, $summaryInput, $contentInput, $userInput, $imageDescriptionInput, $updatedAt);
 
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPageInput);
             die;
@@ -66,7 +74,8 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'page' => "Édition d'un blog post",
         'post' => $post,
         'current_page' => $currentPageInput,
-        'errors' => $errors
+        'errors' => $errors,
+        'users' => $users,
     ]);
 } else {
     error("Vous n'êtes pas autorisé à accéder à cette page.", 403);

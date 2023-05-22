@@ -11,7 +11,6 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         $idUser = filter_input(INPUT_POST, 'id_user', FILTER_SANITIZE_NUMBER_INT);
 
         $userModel->deleteUser($idUser);
-        $_SESSION['notif_users'] = $userModel->numberOfUsersNotValidated();
 
         header("Location: /users/list");
     }

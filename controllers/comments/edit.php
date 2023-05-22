@@ -22,7 +22,6 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
         if (!$error) {
             $commentModel->editCommentByAdmin($contentInput, $idComment);
-            $_SESSION['notif_comments'] = $commentModel->numberOfCommentsNotValidated();
 
             if ($from === 'posts') {
                 header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPage . "#comments");

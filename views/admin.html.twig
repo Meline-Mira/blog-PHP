@@ -1,0 +1,28 @@
+{{ include('layout/header.html.twig') }}
+
+<div class="mx-auto max-w-2xl py-8 sm:py-24 lg:max-w-none lg:py-10 flex flex-col w-72">
+    <a href="/users/list" class="inline-flex mb-4 justify-between items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <span class="flex">
+            <span class="mr-2">{% include 'heroicons/user.svg' %}</span>
+
+            Gestion des utilisateurs
+        </span>
+
+        <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+        {{ notif_users }}
+        </span>
+    </a>
+    <a href="/comments/validation" class="inline-flex mb-4 justify-between items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <span class="flex">
+            <span class="mr-2">{% include 'heroicons/chat-bubble-bottom-center-text.svg' %}</span>
+
+            Gestion des commentaires
+        </span>
+
+        <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+        {{ notif_comments }}
+        </span>
+    </a>
+</div>
+
+{{ include('layout/footer.html.twig') }}

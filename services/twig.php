@@ -22,8 +22,6 @@ function create_twig(): Environment
         $twig->addGlobal('user_last_name', $_SESSION['last_name']);
         $twig->addGlobal('user_role', $_SESSION['role']);
         $twig->addGlobal('user_id', $_SESSION['id']);
-        $twig->addGlobal('notif_comments', $_SESSION['notif_comments'] ?? 0);
-        $twig->addGlobal('notif_users', $_SESSION['notif_users'] ?? 0);
         $twig->addGlobal('logged_in', true);
     } else {
         $twig->addGlobal('logged_in', false);

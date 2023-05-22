@@ -14,13 +14,17 @@ class BlogPostModel extends Database
         ['title' => $title, 'summary' => $summary, 'content' => $content, 'image_url' => $imageUrl, 'image_description' => $imageDescription, 'id_user' => $idUser, 'updated_at' => $updatedAt]);
     }
 
-    public function editBlogPosts(int $idPost, string $title, string $summary, string $content, string $imageDescription, string $updatedAt): void
+    public function editBlogPosts(int $idPost, string $title, string $summary, string $content, int $idUser, string $imageDescription, string $updatedAt): void
     {
+        if ($idUser === -1) {
+            $idUser = null;
+        }
+
         $this->execute('
         UPDATE posts
-        SET title = :title, summary = :summary, content = :content, image_description = :image_description, updated_at = :updated_at 
+        SET title = :title, summary = :summary, content = :content, id_user = :id_user, image_description = :image_description, updated_at = :updated_at 
         WHERE id = :id',
-        ['id' => $idPost, 'title' => $title, 'summary' => $summary, 'content' => $content, 'image_description' => $imageDescription, 'updated_at' => $updatedAt]);
+        ['id' => $idPost, 'title' => $title, 'summary' => $summary, 'content' => $content, 'id_user' => $idUser, 'image_description' => $imageDescription, 'updated_at' => $updatedAt]);
     }
 
     public function changeBlogPostImage(int $idPost, string $imageUrl): void

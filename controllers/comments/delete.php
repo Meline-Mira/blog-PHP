@@ -14,7 +14,6 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         $idComment = filter_input(INPUT_POST, 'id_comment', FILTER_SANITIZE_NUMBER_INT);
 
         $commentModel->deleteComment($idComment);
-        $_SESSION['notif_comments'] = $commentModel->numberOfCommentsNotValidated();
 
         if ($from === 'posts') {
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPage . "#comments");

@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$errors) {
         $password = password_hash($passwordInput, PASSWORD_DEFAULT);
         $userModel->createUser($emailInput, $password, $firstNameInput, $lastNameInput);
-        $_SESSION['notif_users'] = $userModel->numberOfUsersNotValidated();
 
         header("Location: /users/waiting-for-validation");
         die;

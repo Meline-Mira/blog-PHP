@@ -9,7 +9,6 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         $idComment = filter_input(INPUT_POST, 'id_comment', FILTER_SANITIZE_NUMBER_INT);
 
         $commentModel->validateTheComment($idComment);
-        $_SESSION['notif_comments'] = $commentModel->numberOfCommentsNotValidated();
 
         header("Location: /comments/validation");
         die;
