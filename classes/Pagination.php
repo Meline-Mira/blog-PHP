@@ -4,7 +4,9 @@ namespace App;
 
 class Pagination
 {
-    public function __construct(public int $currentPage, public int $numberOfItems, public int $itemsPerPage, public string $path) {}
+    public function __construct(public int $currentPage, public int $numberOfItems, public int $itemsPerPage, public string $path)
+    {
+    }
 
     public function numberOfPages(): int
     {

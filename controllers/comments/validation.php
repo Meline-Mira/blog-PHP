@@ -2,7 +2,7 @@
 
 use App\Models\CommentModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $commentModel = new CommentModel();
     $comments = $commentModel->getCommentsForValidation();
 

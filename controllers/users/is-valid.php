@@ -2,7 +2,7 @@
 
 use App\Models\UserModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $userModel = new UserModel();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

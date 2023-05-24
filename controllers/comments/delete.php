@@ -2,7 +2,7 @@
 
 use App\Models\CommentModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $commentModel = new CommentModel();
     $idComment = filter_input(INPUT_GET, 'id_comment', FILTER_SANITIZE_NUMBER_INT);
     $idPostInput = filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT);
@@ -17,7 +17,7 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
         if ($from === 'posts') {
             header("Location: /posts/read?id=" . $idPostInput . "&current_page=" . $currentPage . "#comments");
-        } elseif ($from === 'validation'){
+        } elseif ($from === 'validation') {
             header("Location: /comments/validation");
         }
     }

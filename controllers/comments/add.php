@@ -2,7 +2,7 @@
 
 use App\Models\CommentModel;
 
-if (isset ($_SESSION['id'])) {
+if (isset($_SESSION['id'])) {
     $commentModel = new CommentModel();
 
     $error = null;

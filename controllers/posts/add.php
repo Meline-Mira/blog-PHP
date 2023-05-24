@@ -2,7 +2,7 @@
 
 use App\Models\BlogPostModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $postModel = new BlogPostModel();
 
     $errors = [];

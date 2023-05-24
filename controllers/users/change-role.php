@@ -2,7 +2,7 @@
 
 use App\Models\UserModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $userModel = new UserModel();
     $idUser = filter_input(INPUT_GET, 'id_user', FILTER_SANITIZE_NUMBER_INT);
     $user = $userModel->getOneUserWithId($idUser);

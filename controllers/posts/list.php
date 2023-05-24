@@ -12,4 +12,3 @@ $pagination = new \App\Pagination($currentPage, $numberOfPosts, $postsPerPage, '
 $twig = create_twig();
 
 echo $twig->render('/posts/list.html.twig', ['page' => 'Liste des Blogs Posts', 'posts' => $posts, 'pagination' => $pagination]);
-

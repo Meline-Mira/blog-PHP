@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App;
 
@@ -13,9 +13,9 @@ class Database
     public function __construct()
     {
         // On n'instancie PDO que s'il n'y a pas de connexion déjà existante
-         if (!$this->database) {
+        if (!$this->database) {
             try {
-                $this->database = new \PDO('mysql:host=localhost;dbname=' . $_ENV['DATABASE_NAME'] . ';charset=utf8', $_ENV['DATABASE_USER'] , $_ENV['DATABASE_PASSWORD'] );
+                $this->database = new \PDO('mysql:host=localhost;dbname=' . $_ENV['DATABASE_NAME'] . ';charset=utf8', $_ENV['DATABASE_USER'], $_ENV['DATABASE_PASSWORD']);
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }

@@ -8,10 +8,12 @@ class UserModel extends Database
 {
     public function createUser(string $email, string $password, string $firstName, string $lastName, string $role = 'user')
     {
-        $this->execute('
+        $this->execute(
+            '
         INSERT INTO users(email, `password`, first_name, last_name, `role`) 
         VALUES (:email, :password, :first_name, :last_name, :role)',
-        ['email' => $email, 'password' => $password, 'first_name' => $firstName, 'last_name' => $lastName, 'role' => $role]);
+            ['email' => $email, 'password' => $password, 'first_name' => $firstName, 'last_name' => $lastName, 'role' => $role]
+        );
     }
 
     public function numberOfUsersNotValidated(): int
@@ -29,35 +31,43 @@ class UserModel extends Database
 
     public function validateTheUser(int $idUser)
     {
-        $this->execute('
+        $this->execute(
+            '
         UPDATE users
         SET validated = 1
         WHERE id = :id',
-        ['id' => $idUser]);
+            ['id' => $idUser]
+        );
     }
 
-    function getUser ($email) : array|false
+    public function getUser($email): array|false
     {
-        return $this->fetchOne('
+        return $this->fetchOne(
+            '
         SELECT * FROM users
         WHERE email = :email',
-        ['email' => $email]);
+            ['email' => $email]
+        );
     }
 
-    function loginUser ($email)
+    public function loginUser($email)
     {
-        return $this->fetchOne('
+        return $this->fetchOne(
+            '
         SELECT * FROM users
         WHERE email = :email AND validated = 1',
-        ['email' => $email]);
+            ['email' => $email]
+        );
     }
 
-    function getOneUserWithId ($idUser) : array|false
+    public function getOneUserWithId($idUser): array|false
     {
-        return $this->fetchOne('
+        return $this->fetchOne(
+            '
         SELECT * FROM users
         WHERE id = :id',
-        ['id' => $idUser]);
+            ['id' => $idUser]
+        );
     }
     public function deleteUser(int $idUser): void
     {
@@ -66,10 +76,12 @@ class UserModel extends Database
 
     public function changeTheUserRole(string $role, int $idUser)
     {
-        $this->execute('
+        $this->execute(
+            '
         UPDATE users
         SET role = :role
         WHERE id = :id',
-        ['role' => $role, 'id' => $idUser]);
+            ['role' => $role, 'id' => $idUser]
+        );
     }
 }

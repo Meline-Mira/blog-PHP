@@ -8,20 +8,24 @@ class CommentModel extends Database
 {
     public function addComment(string $content, int $idUser, string $updatedAt, int $idPost)
     {
-        $this->execute('
+        $this->execute(
+            '
         INSERT INTO comments(content, id_user, updated_at, id_post, validated) 
         VALUES (:content, :id_user, :updated_at, :id_post, 0)',
-        ['content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt, 'id_post' => $idPost]);
+            ['content' => $content, 'id_user' => $idUser, 'updated_at' => $updatedAt, 'id_post' => $idPost]
+        );
     }
 
     public function getCommentsForAPost(int $idPost): array
     {
-        return $this->fetchAll('
+        return $this->fetchAll(
+            '
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id_post = :id_post AND c.validated = 1
         ORDER BY c.updated_at DESC',
-        ['id_post' => $idPost]);
+            ['id_post' => $idPost]
+        );
     }
 
     public function getCommentsForValidation(): array
@@ -42,29 +46,35 @@ class CommentModel extends Database
 
     public function validateTheComment(int $idComment)
     {
-        $this->execute('
+        $this->execute(
+            '
         UPDATE comments
         SET validated = 1
         WHERE id = :id',
-        ['id' => $idComment]);
+            ['id' => $idComment]
+        );
     }
 
     public function getOneComment(int $idComment): array
     {
-        return $this->fetchOne('
+        return $this->fetchOne(
+            '
         SELECT c.*, u.first_name, u.last_name FROM comments c
         LEFT JOIN users u ON c.id_user = u.id
         WHERE c.id = :id',
-        ['id' => $idComment]);
+            ['id' => $idComment]
+        );
     }
 
     public function editCommentByAdmin(string $content, int $idComment)
     {
-        $this->execute('
+        $this->execute(
+            '
         UPDATE comments
         SET content = :content, validated = 1
         WHERE id = :id',
-        ['content' => $content, 'id' => $idComment]);
+            ['content' => $content, 'id' => $idComment]
+        );
     }
 
     public function deleteComment(int $idComment): void

@@ -3,7 +3,7 @@
 use App\Models\CommentModel;
 use App\Models\UserModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $twig = create_twig();
     $userModel = new UserModel();
     $commentModel = new CommentModel();

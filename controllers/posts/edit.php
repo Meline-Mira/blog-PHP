@@ -3,7 +3,7 @@
 use App\Models\BlogPostModel;
 use App\Models\UserModel;
 
-if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $postModel = new BlogPostModel();
     $idPostInput = filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT);
     $currentPageInput = filter_input(INPUT_GET, 'current_page', FILTER_SANITIZE_NUMBER_INT);
@@ -44,7 +44,7 @@ if (isset ($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             !in_array(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION), ['png', 'jpeg', 'jpg']) ||
             $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE &&
             !in_array(exif_imagetype($_FILES['image']['tmp_name']), [IMAGETYPE_JPEG, IMAGETYPE_PNG])
-            ) {
+        ) {
             $errors[] = 'Votre format d\'image n\'est pas accepté.';
         }
         if (empty($imageDescriptionInput)) {
