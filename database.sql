@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 22 mai 2023 à 19:12
+-- Généré le : jeu. 25 mai 2023 à 15:12
 -- Version du serveur : 10.11.2-MariaDB
 -- Version de PHP : 8.2.5
 
@@ -60,7 +60,8 @@ INSERT INTO `comments` (`id`, `content`, `id_user`, `updated_at`, `id_post`, `va
 (79, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eleifend lectus. Integer leo erat, posuere ut convallis sit amet, feugiat ac elit. Nullam maximus imperdiet risus. In neque quam, vehicula id varius a, venenatis eget turpis. Donec malesuada non nunc eget gravida. ', 13, '2023-05-11 14:44:48', 38, 1),
 (80, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eleifend lectus. Integer leo erat, posuere ut convallis sit amet, feugiat ac elit. Nullam maximus imperdiet risus. In neque quam, vehicula id varius a, venenatis eget turpis. Donec malesuada non nunc eget gravida. ', 13, '2023-05-11 14:44:53', 38, 1),
 (81, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eleifend lectus. Integer leo erat, posuere ut convallis sit amet, feugiat ac elit. Nullam maximus imperdiet risus. In neque quam, vehicula id varius a, venenatis eget turpis. Donec malesuada non nunc eget gravida. ', 13, '2023-05-11 14:44:56', 38, 1),
-(82, 'Ut fringilla leo ac lobortis volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam tempus erat id fringilla semper. Quisque congue pretium justo facilisis pretium. Fusce auctor nibh sed est porttitor, sed commodo nunc condimentum. Nulla mollis sem in libero ultricies, sed maximus orci venenatis.', 13, '2023-05-22 18:58:24', 1, 1);
+(82, 'Ut fringilla leo ac lobortis volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam tempus erat id fringilla semper. Quisque congue pretium justo facilisis pretium. Fusce auctor nibh sed est porttitor, sed commodo nunc condimentum. Nulla mollis sem in libero ultricies, sed maximus orci venenatis.', 13, '2023-05-22 18:58:24', 1, 1),
+(83, 'Duis ipsum tellus, molestie et vestibulum consectetur, dapibus imperdiet odio. Suspendisse ac mauris sit amet purus auctor consectetur. Vestibulum egestas lectus eget tempor bibendum. Donec id scelerisque nunc. Aliquam magna urna, consequat nec nunc vitae, varius accumsan libero. Morbi pharetra felis et orci semper cursus. Nunc vitae tempus dui. Sed et diam dui. Pellentesque nec rhoncus tortor. Sed non turpis a velit finibus lobortis ac vel lacus.', 13, '2023-05-25 15:06:35', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
