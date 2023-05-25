@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CommentModel;
+use App\Models\UserModel;
 use Twig\Environment;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
@@ -23,6 +25,12 @@ function create_twig(): Environment
         $twig->addGlobal('user_role', $_SESSION['role']);
         $twig->addGlobal('user_id', $_SESSION['id']);
         $twig->addGlobal('logged_in', true);
+        if ($_SESSION['role'] === 'admin') {
+            $commentModel = new CommentModel();
+            $userModel = new UserModel();
+            $twig->addGlobal('notif_comments', $commentModel->numberOfCommentsNotValidated());
+            $twig->addGlobal('notif_users', $userModel->numberOfUsersNotValidated());
+        }
     } else {
         $twig->addGlobal('logged_in', false);
     }

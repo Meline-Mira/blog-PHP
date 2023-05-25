@@ -22,10 +22,6 @@ $router->patch('/posts/edit', 'controllers/posts/edit.php');
 $router->get('/posts/delete', 'controllers/posts/delete.php');
 $router->delete('/posts/delete', 'controllers/posts/delete.php');
 
-// admin
-
-$router->get('/admin', 'controllers/admin.php');
-
 //comments management
 
 $router->post('/comments/add', 'controllers/comments/add.php');
