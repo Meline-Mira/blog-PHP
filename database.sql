@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 25 mai 2023 à 15:12
+-- Généré le : jeu. 01 juin 2023 à 16:04
 -- Version du serveur : 10.11.2-MariaDB
 -- Version de PHP : 8.2.5
 
@@ -61,7 +61,11 @@ INSERT INTO `comments` (`id`, `content`, `id_user`, `updated_at`, `id_post`, `va
 (80, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eleifend lectus. Integer leo erat, posuere ut convallis sit amet, feugiat ac elit. Nullam maximus imperdiet risus. In neque quam, vehicula id varius a, venenatis eget turpis. Donec malesuada non nunc eget gravida. ', 13, '2023-05-11 14:44:53', 38, 1),
 (81, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eleifend lectus. Integer leo erat, posuere ut convallis sit amet, feugiat ac elit. Nullam maximus imperdiet risus. In neque quam, vehicula id varius a, venenatis eget turpis. Donec malesuada non nunc eget gravida. ', 13, '2023-05-11 14:44:56', 38, 1),
 (82, 'Ut fringilla leo ac lobortis volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam tempus erat id fringilla semper. Quisque congue pretium justo facilisis pretium. Fusce auctor nibh sed est porttitor, sed commodo nunc condimentum. Nulla mollis sem in libero ultricies, sed maximus orci venenatis.', 13, '2023-05-22 18:58:24', 1, 1),
-(83, 'Duis ipsum tellus, molestie et vestibulum consectetur, dapibus imperdiet odio. Suspendisse ac mauris sit amet purus auctor consectetur. Vestibulum egestas lectus eget tempor bibendum. Donec id scelerisque nunc. Aliquam magna urna, consequat nec nunc vitae, varius accumsan libero. Morbi pharetra felis et orci semper cursus. Nunc vitae tempus dui. Sed et diam dui. Pellentesque nec rhoncus tortor. Sed non turpis a velit finibus lobortis ac vel lacus.', 13, '2023-05-25 15:06:35', 1, 0);
+(83, 'Duis ipsum tellus, molestie et vestibulum consectetur, dapibus imperdiet odio. Suspendisse ac mauris sit amet purus auctor consectetur. Vestibulum egestas lectus eget tempor bibendum. Donec id scelerisque nunc. Aliquam magna urna, consequat nec nunc vitae, varius accumsan libero. Morbi pharetra felis et orci semper cursus. Nunc vitae tempus dui. Sed et diam dui. Pellentesque nec rhoncus tortor. Sed non turpis a velit finibus lobortis ac vel lacus.', 13, '2023-05-25 15:06:35', 1, 1),
+(85, 'Donec semper nisi vel pretium pretium. Donec nunc velit, feugiat et turpis eget, consequat congue enim. Etiam posuere orci turpis, sit amet tempus arcu fringilla vitae. Nam vehicula lectus vel lacus iaculis, sit amet faucibus libero eleifend. Duis aliquet lorem eget erat dignissim, a scelerisque est feugiat. Morbi id nulla ligula. Nulla facilisi. Sed vitae sem lorem. Aenean semper at mi non tincidunt. Curabitur at nisl eros. Nulla nunc metus, tristique a mi vel, condimentum placerat arcu. ', 11, '2023-06-01 15:05:29', 1, 1),
+(86, 'Aliquam volutpat urna libero, eget iaculis ex semper nec. Vestibulum tincidunt orci quis eleifend ullamcorper. Nam maximus ex nec pretium eleifend. Curabitur dapibus, tellus eget euismod accumsan, quam eros finibus turpis, a feugiat velit leo sed nibh. Proin euismod purus ac laoreet pellentesque. Vivamus vel consequat ipsum. In volutpat lacus ac felis fringilla, nec dignissim arcu laoreet. Lorem ipsum', 4, '2023-06-01 15:06:12', 1, 1),
+(88, 'Donec semper nisi vel pretium pretium. Donec nunc velit, feugiat et turpis eget, consequat congue enim. Etiam posuere orci turpis, sit amet tempus arcu fringilla vitae. Nam vehicula lectus vel lacus iaculis, sit amet faucibus libero eleifend. Duis aliquet lorem eget erat dignissim, a scelerisque est feugiat. Morbi id nulla ligula.', 11, '2023-06-01 15:37:19', 1, 0),
+(89, 'Praesent sollicitudin nisi felis, sed laoreet leo facilisis ut. Nam malesuada, sem vel viverra commodo, tortor mauris elementum risus, quis ornare quam felis placerat massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In elit nibh, laoreet id odio eget, lobortis blandit nibh.', 4, '2023-06-01 15:38:03', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -135,7 +139,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `vali
 (13, 'emeline@example.com', '$2y$10$fimjrnEsI6kccvf5F5Rg4uqQsGWVb/uNFsYBTZ7zyJFlWfqWwVR3K', 'Emeline', 'Emeline', 1, 'admin'),
 (19, 'emeline.gineys@example.com', '$2y$10$shU7PZpwuB0nrVeHhm13nubNwavYog7oXg.hg5N/a7pV3eEexeD92', 'Emeline', 'Gineys', 1, 'user'),
 (21, 'john.doe@example.com', '$2y$10$3iI8mLcQ7W3/M.NyN7Y9lu6XLdpH1wSrD4G.s2ekw/SXFv3YGlqZO', 'John', 'Doe', 1, 'user'),
-(23, 'test@example.com', '$2y$10$WUpZxKBYVUMojB.GB780UumuuH1uZziGO/qorpCA4CAu4IuQZKg7u', 'Test', 'Compte', 0, 'user');
+(26, 'test.exemple@example.com', '$2y$10$uzIyTV8z0aoi8OBv26x5ne0GEIMOsWBZlnozrJ/l3NPbE13bqNAnO', 'Test', 'exemple', 0, 'user');
 
 --
 -- Index pour les tables déchargées
@@ -171,19 +175,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Contraintes pour les tables déchargées
