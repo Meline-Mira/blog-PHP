@@ -11,7 +11,7 @@ function create_twig(): Environment
 {
     $loader = new FilesystemLoader(__DIR__ . '/../views');
     $twig = new Environment($loader, [
-        'cache' => false/*__DIR__ . '/../var/cache'*/,
+        'cache' => false,
         'debug' => true,
     ]);
     $twig->addExtension(new IntlExtension());
